@@ -9,6 +9,9 @@ include_directories(${CMAKE_INCLUDE_PATH})
 find_package(Boost 1.71.0 REQUIRED COMPONENTS system thread)
 find_package(Threads)
 
+# QT
+find_package(Qt5Widgets CONFIG REQUIRED)
+
 # Client
 add_executable( client
                 Client/src/main.cpp
@@ -16,8 +19,9 @@ add_executable( client
 target_include_directories( client PUBLIC
                             Client/include
                           )
-TARGET_LINK_LIBRARIES(client ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})
+target_link_libraries(client ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})
 target_link_libraries(client ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(client ${CONAN_LIBS} Qt5::Widgets)
 
 # Server
 add_executable( server
@@ -26,7 +30,3 @@ add_executable( server
 target_include_directories( server PUBLIC
                             Server/include
                           )
-
-# QT
-# find_package(Qt5Widgets CONFIG REQUIRED)
-# target_link_libraries(babel ${CONAN_LIBS} Qt5::Widgets)
