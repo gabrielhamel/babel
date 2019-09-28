@@ -26,7 +26,11 @@ target_link_libraries(client ${CONAN_LIBS} Qt5::Widgets)
 # Server
 add_executable( server
                 Server/src/main.cpp
+                Server/src/Server.cpp
+                Server/src/Connection.cpp
                 )
 target_include_directories( server PUBLIC
                             Server/include
                           )
+target_link_libraries(server ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})
+target_link_libraries(server ${CMAKE_THREAD_LIBS_INIT})

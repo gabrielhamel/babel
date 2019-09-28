@@ -1,4 +1,5 @@
 [requires]
+bzip2/1.0.8@conan/stable
 qt/5.12.5@bincrafters/stable
 portaudio/v190600.20161030@bincrafters/stable
 opus/1.3.1@bincrafters/stable
