@@ -9,7 +9,9 @@
 
 #include <boost/asio.hpp>
 #include "INetworkServer.hpp"
+#include "ClientService.hpp"
 #include "BoostNetworkClient.hpp"
+#include "ClientService.hpp"
 
 using namespace boost::asio;
 using namespace ip;
@@ -24,10 +26,11 @@ namespace bbl::srv
             tcp::socket _socket;
             tcp::acceptor _acceptor;
             tcp::socket &getSocket();
+            ClientService &_clientService;
             void bindAcceptor();
             void acceptHandler(boost::shared_ptr<BoostNetworkClient> connection, const boost::system::error_code &error);
         public:
-            BoostNetworkServer(unsigned short port);
+            BoostNetworkServer(unsigned short port, ClientService &service);
             ~BoostNetworkServer();
             BoostNetworkServer(const BoostNetworkServer &) = delete;
             BoostNetworkServer &operator=(const BoostNetworkServer &) = delete;

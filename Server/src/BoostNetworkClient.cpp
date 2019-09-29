@@ -5,15 +5,13 @@
 ** BoostNetworkClient
 */
 
-#include <iostream>
 #include <boost/bind.hpp>
-#include <boost/algorithm/string.hpp>
 #include "BoostNetworkClient.hpp"
 
 using namespace bbl::srv;
 
-BoostNetworkClient::BoostNetworkClient(basic_socket_acceptor<tcp> &ec) :
-_socket(ec.get_executor()), _connected(false)
+BoostNetworkClient::BoostNetworkClient(basic_socket_acceptor<tcp> &ec, ClientService &service) :
+_socket(ec.get_executor()), _connected(false), _clientService(service)
 {
 
 }
@@ -30,13 +28,10 @@ tcp::socket &BoostNetworkClient::getSocket()
 
 void BoostNetworkClient::bindRead()
 {
-    if (_connected == false) {
-        std::cout << "New incomming connection: " << getId() << std::endl;
+    if (_connected == false)
         _connected = true;
-    }
-    _dataReaded.fill(0);
     auto binding = boost::bind(&BoostNetworkClient::readHandler, shared_from_this(), placeholders::error, placeholders::bytes_transferred);
-    _socket.async_read_some(buffer(_dataReaded, READ_SIZE), binding);
+    async_read_until(_socket, _buffer, "\0", binding);
 }
 
 std::size_t BoostNetworkClient::getId() const
@@ -47,24 +42,32 @@ std::size_t BoostNetworkClient::getId() const
 
 void BoostNetworkClient::readHandler(const boost::system::error_code &error, std::size_t bytes_transferred)
 {
-    if (error == error::eof) {
-        std::cout << getId() << " disconnected" << std::endl;
-        _socket.close();
-        _connected = false;
+    if (error) {
+        disconnect(error.message());
         return;
     }
-    std::string message(std::begin(_dataReaded), std::end(_dataReaded));
-    boost::replace_all(message, "\n", "\\n");
-    std::cout << getId() << " say: '" << message << "'" << std::endl;
+    std::ostringstream ss;
+    ss << &_buffer;
+    std::string message = ss.str();
+    _clientService.recvData(this, message);
     bindRead();
 }
 
-void BoostNetworkClient::send(const std::string &data) const
+void BoostNetworkClient::writeHandler(const boost::system::error_code &error, std::size_t bytes_transferred)
 {
-
+    if (error)
+        disconnect(error.message());
 }
 
-std::string BoostNetworkClient::recv() const
+void BoostNetworkClient::send(const std::string &data)
 {
-    return "";
+    auto binding = boost::bind(&BoostNetworkClient::writeHandler, shared_from_this(), placeholders::error, placeholders::bytes_transferred);
+    _socket.async_write_some(buffer(data, data.length()), binding);
+}
+
+void BoostNetworkClient::disconnect(const std::string &message)
+{
+    _clientService.removeClient(this);
+    _socket.close();
+    _connected = false;
 }

@@ -10,8 +10,7 @@
 #include <boost/asio.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include "INetworkClient.hpp"
-
-#define READ_SIZE 4096
+#include "ClientService.hpp"
 
 using namespace boost::asio;
 using namespace ip;
@@ -24,18 +23,20 @@ namespace bbl::srv
         private:
             tcp::socket _socket;
             bool _connected;
-            std::array<unsigned char, READ_SIZE> _dataReaded;
+            streambuf _buffer;
+            ClientService &_clientService;
         public:
-            BoostNetworkClient(basic_socket_acceptor<tcp> &ec);
+            BoostNetworkClient(basic_socket_acceptor<tcp> &ec, ClientService &service);
             ~BoostNetworkClient();
             BoostNetworkClient(const BoostNetworkClient &) = delete;
             BoostNetworkClient &operator=(const BoostNetworkClient &) = delete;
-            void send(const std::string &data) const;
-            std::string recv() const;
+            void send(const std::string &data);
             tcp::socket &getSocket();
             void bindRead();
             std::size_t getId() const;
+            void disconnect(const std::string &message);
             void readHandler(const boost::system::error_code &error, std::size_t bytes_transferred);
+            void writeHandler(const boost::system::error_code &error, std::size_t bytes_transferred);
     };
 
 }

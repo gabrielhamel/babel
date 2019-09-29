@@ -16,8 +16,8 @@ namespace bbl::srv
     {
         public:
             virtual ~INetworkClient() = default;
-            virtual void send(const std::string &data) const = 0;
-            virtual std::string recv() const = 0;
+            virtual void send(const std::string &data) = 0;
+            virtual std::size_t getId() const = 0;
     };
 
 }
