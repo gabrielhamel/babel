@@ -10,7 +10,7 @@
 #include <boost/asio.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include "INetworkClient.hpp"
-#include "ClientService.hpp"
+#include "NetworkManager.hpp"
 
 using namespace boost::asio;
 using namespace ip;
@@ -24,9 +24,9 @@ namespace bbl::srv
             tcp::socket _socket;
             bool _connected;
             streambuf _buffer;
-            ClientService &_clientService;
+            NetworkManager &_NetworkManager;
         public:
-            BoostNetworkClient(basic_socket_acceptor<tcp> &ec, ClientService &service);
+            BoostNetworkClient(basic_socket_acceptor<tcp> &ec, NetworkManager &service);
             ~BoostNetworkClient();
             BoostNetworkClient(const BoostNetworkClient &) = delete;
             BoostNetworkClient &operator=(const BoostNetworkClient &) = delete;

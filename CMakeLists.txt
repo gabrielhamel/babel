@@ -28,7 +28,7 @@ add_executable( server
                 Server/src/main.cpp
                 Server/src/BoostNetworkClient.cpp
                 Server/src/BoostNetworkServer.cpp
-                Server/src/ClientService.cpp
+                Server/src/NetworkManager.cpp
                 )
 target_include_directories( server PUBLIC
                             Server/include

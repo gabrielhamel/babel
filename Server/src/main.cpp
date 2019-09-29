@@ -11,7 +11,7 @@
 int main(int ac, char **av)
 {
     try {
-        bbl::srv::ClientService service;
+        bbl::srv::NetworkManager service;
         std::unique_ptr<bbl::srv::INetworkServer> server(new bbl::srv::BoostNetworkServer(8080, service));
         server->run();
     }

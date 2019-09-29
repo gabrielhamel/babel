@@ -2,39 +2,39 @@
 ** EPITECH PROJECT, 2019
 ** CPP_babel_2019
 ** File description:
-** ClientService
+** NetworkManager
 */
 
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
 #include <iostream>
-#include "ClientService.hpp"
+#include "NetworkManager.hpp"
 
 using namespace bbl::srv;
 
-ClientService::ClientService()
+NetworkManager::NetworkManager()
 {
 
 }
 
-ClientService::~ClientService()
+NetworkManager::~NetworkManager()
 {
 
 }
 
-void ClientService::newClient(INetworkClient *client)
+void NetworkManager::newClient(INetworkClient *client)
 {
     _clients.push_back(client);
     std::cout << client->getId() << " New incomming connection" << std::endl;
 }
 
-void ClientService::removeClient(INetworkClient *client)
+void NetworkManager::removeClient(INetworkClient *client)
 {
     std::remove(_clients.begin(), _clients.end(), client);
     std::cout << client->getId() << " disconnected" << std::endl;
 }
 
-void ClientService::recvData(INetworkClient *client, const std::string &data)
+void NetworkManager::recvData(INetworkClient *client, const std::string &data)
 {
     std::string copy = data;
     boost::replace_all(copy, "\n", "\\n");
