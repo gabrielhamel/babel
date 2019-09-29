@@ -26,8 +26,10 @@ target_link_libraries(client ${CONAN_LIBS} Qt5::Widgets)
 # Server
 add_executable( server
                 Server/src/main.cpp
-                Server/src/Server.cpp
-                Server/src/Connection.cpp
+                Server/src/BoostNetworkClient.cpp
+                Server/src/BoostNetworkServer.cpp
+                # Server/src/Server.cpp
+                # Server/src/Connection.cpp
                 )
 target_include_directories( server PUBLIC
                             Server/include

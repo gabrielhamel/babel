@@ -6,15 +6,16 @@
 */
 
 #include <iostream>
-#include "Server.hpp"
+#include "BoostNetworkServer.hpp"
 
 int main(int ac, char **av)
 {
     try {
-        bbl::srv::Server server(8080);
-        server.run();
-    } catch (std::exception &error) {
-        std::cerr << error.what() << std::endl;
+        std::unique_ptr<bbl::srv::INetworkServer> server(new bbl::srv::BoostNetworkServer(8080));
+        server->run();
+    }
+    catch (const std::exception &e) {
+        std::cerr << e.what() << std::endl;
         return 84;
     }
     return 0;
