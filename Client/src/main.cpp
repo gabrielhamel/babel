@@ -6,11 +6,13 @@
 */
 
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QPushButton>
 #include <boost/asio.hpp>
 #include <iostream>
 #include <opus/opus.h>
 #include <portaudio.h>
+#include "RegisterForm.hpp"
+
+using namespace bbl::cli::graphic::form;
 
 int main(int ac, char **av)
 {
@@ -20,6 +22,7 @@ int main(int ac, char **av)
     boost::asio::ip::tcp::resolver::query query("www.developpez.com", "80");
     boost::asio::ip::tcp::resolver::iterator iter = resolver.resolve(query);
     boost::asio::ip::tcp::resolver::iterator end;
+	
 	while (iter != end) {
 		boost::asio::ip::tcp::endpoint endpoint = *iter++;
 		std::cout << endpoint << std::endl;
@@ -30,10 +33,10 @@ int main(int ac, char **av)
 
 	// Portaudio test
 	Pa_GetErrorText(0);
-
-	// Qt test
 	QApplication app(ac, av);
-	QPushButton button("Hello world !");
-	button.show();
+	RegisterForm window;
+
+    window.show();
+
 	return app.exec();
 }
