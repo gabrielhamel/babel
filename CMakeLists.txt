@@ -1,5 +1,5 @@
 project(Babel)
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.13)
 add_definitions("-fPIC")
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
@@ -11,6 +11,9 @@ find_package(Threads)
 
 # QT
 find_package(Qt5Widgets CONFIG REQUIRED)
+
+# SQLite3
+find_package(SQLite3)
 
 # Client
 add_executable( client
@@ -26,12 +29,19 @@ target_link_libraries(client ${CONAN_LIBS} Qt5::Widgets)
 # Server
 add_executable( server
                 Server/src/main.cpp
-                Server/src/BoostNetworkClient.cpp
-                Server/src/BoostNetworkServer.cpp
-                Server/src/NetworkManager.cpp
+                Server/src/Network/BoostNetworkClient.cpp
+                Server/src/Network/BoostNetworkServer.cpp
+                Server/src/Network/NetworkManager.cpp
+                Server/src/Storage/SqlClient.cpp
                 )
 target_include_directories( server PUBLIC
                             Server/include
+                            Server/include/Network
+                            Server/include/Storage
+                          )
+target_include_directories( server PUBLIC
+                            ${SQLITE3_INCLUDE_DIRS}
                           )
 target_link_libraries(server ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})
 target_link_libraries(server ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(server ${SQLITE3_LIBRARIES})
