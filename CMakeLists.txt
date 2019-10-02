@@ -18,6 +18,8 @@ find_package(SQLite3)
 # Client
 add_executable( client
                 Client/src/main.cpp
+                Client/src/Form.cpp
+                Client/src/RegisterForm.cpp
               )
 target_include_directories( client PUBLIC
                             Client/include
