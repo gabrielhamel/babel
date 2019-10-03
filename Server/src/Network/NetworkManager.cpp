@@ -26,13 +26,20 @@ NetworkManager::~NetworkManager()
 
 void NetworkManager::newClient(INetworkClient *client)
 {
-    _clients.push_back(client);
+    _clients.push_back(new User(client));
     std::cout << client->getId() << " New incomming connection" << std::endl;
 }
 
 void NetworkManager::removeClient(INetworkClient *client)
 {
-    std::remove(_clients.begin(), _clients.end(), client);
+    for (auto elem : _clients) {
+        if (elem->getNetworkPart() == client) {
+            auto ptr = elem;
+            _clients.erase(std::find(_clients.begin(), _clients.end(), elem));
+            delete ptr;
+            break;
+        }
+    }
     std::cout << client->getId() << " disconnected" << std::endl;
 }
 
@@ -41,5 +48,10 @@ void NetworkManager::recvData(INetworkClient *client, const std::string &data)
     std::string copy = data;
     boost::replace_all(copy, "\n", "\\n");
     std::cout << client->getId() << " say: '" << copy << "'" << std::endl;
-    CommandParser::parse(_clients, client, _database, data);
+    for (auto elem : _clients) {
+        if (elem->getNetworkPart() == client) {
+            CommandParser::parse(_clients, elem, _database, data);
+            break;
+        }
+    }
 }

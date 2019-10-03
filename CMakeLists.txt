@@ -36,6 +36,7 @@ add_executable( server
                 Server/src/Network/NetworkManager.cpp
                 Server/src/Storage/SqlClient.cpp
                 Server/src/Core/CommandParser.cpp
+                Server/src/Core/User.cpp
               )
 target_include_directories( server PUBLIC
                             Server/include

@@ -12,7 +12,7 @@
 
 using namespace bbl::srv;
 
-typedef void(*strategyCallback)(std::vector<INetworkClient *>, INetworkClient *, IStorage *, const std::vector<std::string> &);
+typedef void(*strategyCallback)(std::vector<User *>, User *, IStorage *, const std::vector<std::string> &);
 
 static const std::map<std::string, std::pair<strategyCallback, std::size_t>> _functions = {
     {"REGISTER", {RegisterCommand::run, 2}},
@@ -36,12 +36,12 @@ std::vector<std::string> CommandParser::split(std::string str, const std::string
     return list;
 }
 
-void CommandParser::parse(std::vector<INetworkClient *> _clients, INetworkClient *current, IStorage *db, const std::string &text)
+void CommandParser::parse(std::vector<User *> _clients, User *current, IStorage *db, const std::string &text)
 {
     std::string copy = text;
     auto idx = copy.find_last_of('\n');
     if (text == "\n") {
-        current->send("KO Invalid command\n");
+        current->getNetworkPart()->send("KO Invalid command\n");
         return;
     }
     if (idx != std::string::npos)
@@ -52,9 +52,9 @@ void CommandParser::parse(std::vector<INetworkClient *> _clients, INetworkClient
             if (list.size() >= i.second.second + 1)
                 i.second.first(_clients, current, db, list);
             else
-                current->send("KO No enough arguments\n");
+                current->getNetworkPart()->send("KO No enough arguments\n");
             return;
         }
     }
-    current->send("KO Invalid command\n");
+    current->getNetworkPart()->send("KO Invalid command\n");
 }

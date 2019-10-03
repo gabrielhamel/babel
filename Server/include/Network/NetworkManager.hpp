@@ -9,7 +9,7 @@
 
 #include <string>
 #include <vector>
-#include "INetworkClient.hpp"
+#include "User.hpp"
 #include "CommandParser.hpp"
 
 namespace bbl::srv
@@ -19,7 +19,7 @@ namespace bbl::srv
     {
         private:
             IStorage *_database;
-            std::vector<INetworkClient *> _clients;
+            std::vector<User *> _clients;
         public:
             NetworkManager(IStorage *database);
             ~NetworkManager();

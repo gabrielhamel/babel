@@ -11,6 +11,7 @@
 #include <vector>
 #include <list>
 #include "IStorage.hpp"
+#include "User.hpp"
 #include "INetworkClient.hpp"
 
 namespace bbl::srv
@@ -21,7 +22,7 @@ namespace bbl::srv
         private:
             static std::vector<std::string> split(std::string str, const std::string &delimiter);
         public:
-            static void parse(std::vector<INetworkClient *> _clients, INetworkClient *current, IStorage *db, const std::string &text);
+            static void parse(std::vector<User *> _clients, User *current, IStorage *db, const std::string &text);
     };
 
 }
