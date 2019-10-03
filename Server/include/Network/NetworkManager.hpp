@@ -7,8 +7,10 @@
 
 #pragma once
 
+#include <string>
 #include <vector>
 #include "INetworkClient.hpp"
+#include "CommandParser.hpp"
 
 namespace bbl::srv
 {
@@ -16,9 +18,10 @@ namespace bbl::srv
     class NetworkManager
     {
         private:
+            IStorage *_database;
             std::vector<INetworkClient *> _clients;
         public:
-            NetworkManager();
+            NetworkManager(IStorage *database);
             ~NetworkManager();
             void newClient(INetworkClient *client);
             void removeClient(INetworkClient *client);

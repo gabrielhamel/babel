@@ -35,11 +35,13 @@ add_executable( server
                 Server/src/Network/BoostNetworkServer.cpp
                 Server/src/Network/NetworkManager.cpp
                 Server/src/Storage/SqlClient.cpp
-                )
+                Server/src/Core/CommandParser.cpp
+              )
 target_include_directories( server PUBLIC
                             Server/include
                             Server/include/Network
                             Server/include/Storage
+                            Server/include/Core
                           )
 target_include_directories( server PUBLIC
                             ${SQLITE3_INCLUDE_DIRS}

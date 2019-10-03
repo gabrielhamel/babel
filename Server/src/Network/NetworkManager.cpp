@@ -8,11 +8,13 @@
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
 #include <iostream>
+#include "CommandParser.hpp"
 #include "NetworkManager.hpp"
 
 using namespace bbl::srv;
 
-NetworkManager::NetworkManager()
+NetworkManager::NetworkManager(IStorage *database) :
+_database(database)
 {
 
 }
@@ -39,4 +41,5 @@ void NetworkManager::recvData(INetworkClient *client, const std::string &data)
     std::string copy = data;
     boost::replace_all(copy, "\n", "\\n");
     std::cout << client->getId() << " say: '" << copy << "'" << std::endl;
+    CommandParser::parse(_clients, client, _database, data);
 }
