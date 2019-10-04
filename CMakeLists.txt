@@ -1,32 +1,35 @@
-project(Babel)
-cmake_minimum_required(VERSION 3.13)
-add_definitions("-fPIC")
+cmake_minimum_required(VERSION 3.5)
+
+project(Babel LANGUAGES CXX)
+
+# Conan
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
-include_directories(${CMAKE_INCLUDE_PATH})
+
+# QT
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
+
+# SQLite3
+find_package(SQLite3)
 
 # Boost
 find_package(Boost 1.71.0 REQUIRED COMPONENTS system thread)
 find_package(Threads)
 
-# QT
-find_package(Qt5Widgets CONFIG REQUIRED)
+add_executable(client
+    Client/src/main.cpp
+    Client/src/MainWindow.cpp
+    Client/include/MainWindow.hpp
+)
 
-# SQLite3
-find_package(SQLite3)
-
-# Client
-add_executable( client
-                Client/src/main.cpp
-                Client/src/Form.cpp
-                Client/src/RegisterForm.cpp
-              )
-target_include_directories( client PUBLIC
-                            Client/include
-                          )
-target_link_libraries(client ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})
-target_link_libraries(client ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(client ${CONAN_LIBS} Qt5::Widgets)
+target_link_libraries(client PRIVATE Qt5::Widgets)
 
 # Server
 add_executable( server
