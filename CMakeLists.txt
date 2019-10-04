@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5)
 project(Babel LANGUAGES CXX)
 
 # Conan
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+include(build/conanbuildinfo.cmake)
 conan_basic_setup()
 
 # QT
