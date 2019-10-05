@@ -33,7 +33,14 @@ add_executable(client
     Client/include/RegisterForm.hpp
     Client/src/MainWindow.cpp
     Client/include/MainWindow.hpp
+    Client/src/Network/BoostTcpClient.cpp
 )
+
+# No Qt header
+target_include_directories(
+                            client PUBLIC
+                            Client/include/Network
+                          )
 
 target_link_libraries(client PRIVATE Qt5::Widgets)
 target_link_libraries(client PRIVATE ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})

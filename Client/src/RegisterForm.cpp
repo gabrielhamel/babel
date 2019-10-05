@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2019
+** CPP_babel_2019
+** File description:
+** RegisterForm
+*/
+
 #include "../include/RegisterForm.hpp"
 
 using namespace bbl::cli::graphic::form;
@@ -18,7 +25,7 @@ RegisterForm::RegisterForm() : Form(QString("Register"))
 
 RegisterForm::~RegisterForm()
 {
-    
+
 }
 
 void RegisterForm::onPasswordEdit(const QString &text)

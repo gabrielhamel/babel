@@ -5,7 +5,7 @@
 ** main
 */
 
-#include <QApplication>
+#include <QtWidgets/QApplication>
 #include "../include/MainWindow.hpp"
 
 using namespace bbl::cli::graphic;

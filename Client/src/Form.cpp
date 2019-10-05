@@ -1,3 +1,10 @@
+/*
+** EPITECH PROJECT, 2019
+** CPP_babel_2019
+** File description:
+** Form
+*/
+
 #include "../include/Form.hpp"
 
 using namespace bbl::cli::graphic::form;
@@ -26,5 +33,5 @@ Form::Form::Form(QString type) : QWidget(nullptr)
 
 Form::Form::~Form()
 {
-    
+
 }
