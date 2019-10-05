@@ -2,7 +2,7 @@
 
 using namespace bbl::cli::graphic::form;
 
-RegisterForm::RegisterForm() : Form()
+RegisterForm::RegisterForm() : Form(QString("Register"))
 {
     this->passwordConfirmField = new QLineEdit(this);
     this->passwordConfirmField->setEchoMode(QLineEdit::Password);

@@ -10,7 +10,6 @@ namespace bbl::cli::graphic::form
         Q_OBJECT
         private:
             QLineEdit *passwordConfirmField;
-            QLabel *errorMessage;
         private slots:
             void onPasswordEdit(const QString &text);
         public:

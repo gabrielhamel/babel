@@ -27,6 +27,8 @@ add_executable(client
     Client/src/main.cpp
     Client/src/Form.cpp
     Client/include/Form.hpp
+    Client/src/LoginForm.cpp
+    Client/include/LoginForm.hpp
     Client/src/RegisterForm.cpp
     Client/include/RegisterForm.hpp
     Client/src/MainWindow.cpp

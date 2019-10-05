@@ -10,13 +10,14 @@ namespace bbl::cli::graphic::form
     {
         Q_OBJECT
         private:
-            QPushButton *button;
+            QPushButton *validateButton;
             QLineEdit *pseudoField;
         protected:
             QGridLayout *layout;
             QLineEdit *passwordField;
+            QLabel *errorMessage;
         public:
-            Form();
+            Form(QString type);
             ~Form();
     };
 }

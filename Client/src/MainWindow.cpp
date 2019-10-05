@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     QVBoxLayout *layout = new QVBoxLayout();
 
     this->registerForm = new RegisterForm();
+    this->loginForm = new LoginForm();
     this->registerButton = new QPushButton("Register");
     this->loginButton = new QPushButton("Login");
 
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     centralWidget->setLayout(layout);
     this->setCentralWidget(centralWidget);
     this->registerButton->connect(this->registerButton, SIGNAL(clicked()), this, SLOT(onRegisterButtonPressed()));
+    this->loginButton->connect(this->loginButton, SIGNAL(clicked()), this, SLOT(onLoginButtonPressed()));
 }
 
 MainWindow::~MainWindow()
@@ -34,4 +36,9 @@ MainWindow::~MainWindow()
 void MainWindow::onRegisterButtonPressed()
 {
     this->setCentralWidget(this->registerForm);
+}
+
+void MainWindow::onLoginButtonPressed()
+{
+    this->setCentralWidget(this->loginForm);
 }
