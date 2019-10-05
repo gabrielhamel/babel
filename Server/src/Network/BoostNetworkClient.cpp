@@ -11,7 +11,7 @@
 using namespace bbl::srv;
 
 BoostNetworkClient::BoostNetworkClient(basic_socket_acceptor<tcp> &ec, NetworkManager &service) :
-_socket(ec.get_executor()), _connected(false), _NetworkManager(service)
+_socket(ec.get_executor()), _connected(false), _networkManager(service)
 {
 
 }
@@ -49,7 +49,7 @@ void BoostNetworkClient::readHandler(const boost::system::error_code &error, std
     std::ostringstream ss;
     ss << &_buffer;
     std::string message = ss.str();
-    _NetworkManager.recvData(this, message);
+    _networkManager.recvData(this, message);
     bindRead();
 }
 
@@ -67,7 +67,7 @@ void BoostNetworkClient::send(const std::string &data)
 
 void BoostNetworkClient::disconnect(const std::string &message)
 {
-    _NetworkManager.removeClient(this);
+    _networkManager.removeClient(this);
     _socket.close();
     _connected = false;
 }

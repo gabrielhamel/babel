@@ -24,7 +24,7 @@ namespace bbl::srv
             tcp::socket _socket;
             bool _connected;
             streambuf _buffer;
-            NetworkManager &_NetworkManager;
+            NetworkManager &_networkManager;
         public:
             BoostNetworkClient(basic_socket_acceptor<tcp> &ec, NetworkManager &service);
             ~BoostNetworkClient();

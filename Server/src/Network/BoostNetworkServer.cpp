@@ -12,7 +12,7 @@
 using namespace bbl::srv;
 
 BoostNetworkServer::BoostNetworkServer(unsigned short port, NetworkManager &service) :
-_socket(_io), _acceptor(_io, tcp::endpoint(tcp::v6(), port)), _NetworkManager(service)
+_socket(_io), _acceptor(_io, tcp::endpoint(tcp::v4(), port)), _NetworkManager(service)
 {
     bindAcceptor();
 }
