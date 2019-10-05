@@ -7,12 +7,28 @@
 
 #pragma once
 
-#include <QMainWindow>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QPushButton>
+#include "LoginForm.hpp"
+#include "RegisterForm.hpp"
 
-class MainWindow : public QMainWindow
+using namespace bbl::cli::graphic::form;
+
+namespace bbl::cli::graphic
 {
-    Q_OBJECT
-    public:
-        MainWindow(QWidget *parent = nullptr);
-        ~MainWindow();
-};
+    class MainWindow : public QMainWindow
+    {
+        Q_OBJECT
+        private:
+            QPushButton *registerButton;
+            QPushButton *loginButton;
+            RegisterForm *registerForm;
+            LoginForm *loginForm;
+        private slots:
+            void onRegisterButtonPressed();
+            void onLoginButtonPressed();
+        public:
+            MainWindow(QWidget *parent = nullptr);
+            ~MainWindow();
+    };
+}
