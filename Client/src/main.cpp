@@ -8,6 +8,8 @@
 #include <QApplication>
 #include "../include/MainWindow.hpp"
 
+using namespace bbl::cli::graphic;
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
