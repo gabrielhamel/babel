@@ -36,6 +36,8 @@ add_executable(client
 )
 
 target_link_libraries(client PRIVATE Qt5::Widgets)
+target_link_libraries(client PRIVATE ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})
+target_link_libraries(client PRIVATE ${CMAKE_THREAD_LIBS_INIT})
 
 # Server
 add_executable( server
