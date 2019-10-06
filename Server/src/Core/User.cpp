@@ -10,7 +10,7 @@
 using namespace bbl::srv;
 
 User::User(INetworkClient *client) :
-_isLogged(false), _client(client)
+_isLogged(false), _client(client), _username("")
 {
 
 }
@@ -20,9 +20,10 @@ User::~User()
 
 }
 
-void User::signin()
+void User::signin(const std::string &username)
 {
     _isLogged = true;
+    _username = username;
 }
 
 bool User::isLogged() const
@@ -33,4 +34,10 @@ bool User::isLogged() const
 INetworkClient *User::getNetworkPart() const
 {
     return _client;
+}
+
+void User::signout()
+{
+    _isLogged = false;
+    _username = "";
 }

@@ -9,6 +9,7 @@
 #include "CommandParser.hpp"
 #include "RegisterCommand.hpp"
 #include "LoginCommand.hpp"
+#include "LogoutCommand.hpp"
 
 using namespace bbl::srv;
 
@@ -16,7 +17,8 @@ typedef void(*strategyCallback)(std::vector<User *>, User *, IStorage *, const s
 
 static const std::map<std::string, std::pair<strategyCallback, std::size_t>> _functions = {
     {"REGISTER", {RegisterCommand::run, 2}},
-    {"LOGIN", {LoginCommand::run, 2}}
+    {"LOGIN", {LoginCommand::run, 2}},
+    {"LOGOUT", {LogoutCommand::run, 0}}
 };
 
 std::vector<std::string> CommandParser::split(std::string str, const std::string &delimiter)

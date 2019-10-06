@@ -20,6 +20,10 @@ namespace bbl::srv
         public:
             static void run(std::vector<User *> _clients, User *current, IStorage *db, const std::vector<std::string> &av)
             {
+                if (current->isLogged()) {
+                    current->getNetworkPart()->send("KO User already logged in\n");
+                    return;
+                }
                 try {
                     db->loginUser(av[1], av[2]);
                 }
@@ -28,7 +32,7 @@ namespace bbl::srv
                     return;
                 }
                 current->getNetworkPart()->send("OK login successful\n");
-                current->signin();
+                current->signin(av[1]);
             }
     };
 

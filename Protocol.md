@@ -26,6 +26,18 @@ OK User logged in
 KO <error>
 ```
 
+## Déconnexion
+```
+LOGOUT
+```
+#### Réponses:
+```
+OK User logged out
+```
+```
+KO <error>
+```
+
 ## Obtenir la liste des contacts
 ```
 CONTACT_LIST
@@ -33,30 +45,6 @@ CONTACT_LIST
 #### Réponses:
 ```
 OK <username1> <username2>
-```
-```
-KO <error>
-```
-
-## Modifier son profil
-```
-PROFIL_SET <profil_key> <value>
-```
-#### Réponses:
-```
-OK <key> updated
-```
-```
-KO <error>
-```
-
-## Consulter un profil
-```
-PROFIL_GET <username> <profil_key>
-```
-#### Réponses:
-```
-OK <value>
 ```
 ```
 KO <error>

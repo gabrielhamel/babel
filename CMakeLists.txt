@@ -34,12 +34,14 @@ add_executable(client
     Client/src/MainWindow.cpp
     Client/include/MainWindow.hpp
     Client/src/Network/BoostTcpClient.cpp
+    Client/src/Core/Client.cpp
 )
 
 # No Qt header
 target_include_directories(
                             client PUBLIC
                             Client/include/Network
+                            Client/include/Core
                           )
 
 target_link_libraries(client PRIVATE Qt5::Widgets)
