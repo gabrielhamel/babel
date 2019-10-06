@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <vector>
 #include "ITcpClient.hpp"
 
 namespace bbl::cli
@@ -16,9 +17,10 @@ namespace bbl::cli
     {
         private:
             ITcpClient *_tcpConnection;
-            std::pair<bool, std::string> readResponse();
             bool _logged;
             std::string _username;
+            std::pair<bool, std::string> readResponse();
+            std::vector<std::string> split(std::string str, const std::string &delimiter) const;
         public:
             Client(ITcpClient *tcpConnection);
             ~Client();
@@ -28,6 +30,10 @@ namespace bbl::cli
             void registration(const std::string &username, const std::string &password);
             void login(const std::string &username, const std::string &password);
             void logout();
+            void requestInvitation(const std::string &contact);
+            void acceptInvitation(const std::string &contact);
+            std::vector<std::string> getInvitations();
+            std::vector<std::string> getContacts();
     };
 
 }

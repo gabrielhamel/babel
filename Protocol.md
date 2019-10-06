@@ -37,7 +37,7 @@ OK User logged out
 KO <error>
 ```
 
-## Demander un ami
+## Soumettre une invitation
 ```
 INVITE_CONTACT <username>
 ```

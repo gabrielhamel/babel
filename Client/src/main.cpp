@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
+// #include <iostream>
 // #include "BoostTcpClient.hpp"
 // #include "Client.hpp"
 
@@ -26,10 +27,17 @@ int main(int argc, char *argv[])
 
 // int main(int argc, char *argv[])
 // {
-//     ITcpClient *client = new BoostTcpClient("127.0.0.1", 8080);
-//     Client cli(client);
+//     try {
+//         ITcpClient *client = new BoostTcpClient("127.0.0.1", 8080);
+//         Client cli(client);
 
-//     cli.login("gabriel", "lol");
-//     cli.logout();
+//         cli.login("gabriel", "password");
+//         auto cts = cli.getContacts();
+//         for (auto &ct : cts)
+//             std::cout << ct << std::endl;
+//         cli.logout();
+//     } catch (std::exception &err) {
+//         std::cerr << err.what() << std::endl;
+//     }
 //     return 0;
 // }

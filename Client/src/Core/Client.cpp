@@ -22,6 +22,23 @@ Client::~Client()
 
 }
 
+std::vector<std::string> Client::split(std::string str, const std::string &delimiter) const
+{
+    std::size_t pos = 0;
+    std::string token;
+    std::vector<std::string> list;
+
+    while ((pos = str.find(delimiter)) != std::string::npos) {
+        token = str.substr(0, pos);
+        if (token != "")
+            list.push_back(token);
+        str.erase(0, pos + delimiter.length());
+    }
+    if (str != "")
+        list.push_back(str);
+    return list;
+}
+
 std::pair<bool, std::string> Client::readResponse()
 {
     auto str = _tcpConnection->recv();
@@ -68,4 +85,38 @@ void Client::logout()
         throw std::runtime_error(res.second);
     _logged = false;
     _username = "";
+}
+
+void Client::requestInvitation(const std::string &contact)
+{
+    _tcpConnection->send("INVITE_CONTACT " + contact + "\n");
+    auto res = readResponse();
+    if (res.first == false)
+        throw std::runtime_error(res.second);
+}
+
+void Client::acceptInvitation(const std::string &contact)
+{
+    _tcpConnection->send("ACCEPT_INVITE " + contact + "\n");
+    auto res = readResponse();
+    if (res.first == false)
+        throw std::runtime_error(res.second);
+}
+
+std::vector<std::string> Client::getInvitations()
+{
+    _tcpConnection->send("GET_INVITE\n");
+    auto res = readResponse();
+    if (res.first == false)
+        throw std::runtime_error(res.second);
+    return split(res.second, " ");
+}
+
+std::vector<std::string> Client::getContacts()
+{
+    _tcpConnection->send("CONTACT_LIST\n");
+    auto res = readResponse();
+    if (res.first == false)
+        throw std::runtime_error(res.second);
+    return split(res.second, " ");
 }
