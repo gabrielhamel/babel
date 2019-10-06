@@ -18,3 +18,18 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 }
+
+// #include "BoostTcpClient.hpp"
+// #include "Client.hpp"
+
+// using namespace bbl::cli;
+
+// int main(int argc, char *argv[])
+// {
+//     ITcpClient *client = new BoostTcpClient("127.0.0.1", 8080);
+//     Client cli(client);
+
+//     cli.login("gabriel", "lol");
+//     cli.logout();
+//     return 0;
+// }
