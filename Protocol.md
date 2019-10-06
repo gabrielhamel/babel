@@ -38,13 +38,49 @@ OK User logged out
 KO <error>
 ```
 
-## Obtenir la liste des contacts
+## Demander un ami
+```
+INVITE_CONTACT <username>
+```
+#### Réponses:
+```
+OK Request done
+```
+```
+KO <error>
+```
+
+## Obtenir les invitations en cours
+```
+GET_INVITE <username1> <username2> ...
+```
+#### Réponses:
+```
+OK Request done
+```
+```
+KO <error>
+```
+
+## Accepter une invitation
+```
+ACCEPT_INVITE <username>
+```
+#### Réponses:
+```
+OK Invite accepted
+```
+```
+KO <error>
+```
+
+## Obtenir sa liste de contacts
 ```
 CONTACT_LIST
 ```
 #### Réponses:
 ```
-OK <username1> <username2>
+OK <username1> <username2> ...
 ```
 ```
 KO <error>
