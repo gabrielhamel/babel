@@ -10,6 +10,10 @@
 #include "RegisterCommand.hpp"
 #include "LoginCommand.hpp"
 #include "LogoutCommand.hpp"
+#include "InviteCommand.hpp"
+#include "GetInviteCommand.hpp"
+#include "AcceptInviteCommand.hpp"
+#include "ContactListCommand.hpp"
 
 using namespace bbl::srv;
 
@@ -18,7 +22,11 @@ typedef void(*strategyCallback)(std::vector<User *>, User *, IStorage *, const s
 static const std::map<std::string, std::pair<strategyCallback, std::size_t>> _functions = {
     {"REGISTER", {RegisterCommand::run, 2}},
     {"LOGIN", {LoginCommand::run, 2}},
-    {"LOGOUT", {LogoutCommand::run, 0}}
+    {"LOGOUT", {LogoutCommand::run, 0}},
+    {"INVITE_CONTACT", {InviteCommand::run, 1}},
+    {"GET_INVITE", {GetInviteCommand::run, 0}},
+    {"ACCEPT_INVITE", {AcceptInviteCommand::run, 1}},
+    {"CONTACT_LIST", {ContactListCommand::run, 0}}
 };
 
 std::vector<std::string> CommandParser::split(std::string str, const std::string &delimiter)

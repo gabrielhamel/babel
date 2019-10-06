@@ -51,11 +51,11 @@ KO <error>
 
 ## Obtenir les invitations en cours
 ```
-GET_INVITE <username1> <username2> ...
+GET_INVITE
 ```
 #### Réponses:
 ```
-OK Request done
+OK <username1> <username2> ...
 ```
 ```
 KO <error>

@@ -22,6 +22,7 @@ User::~User()
 
 void User::signin(const std::string &username)
 {
+    signout();
     _isLogged = true;
     _username = username;
 }
@@ -40,4 +41,9 @@ void User::signout()
 {
     _isLogged = false;
     _username = "";
+}
+
+std::string User::getUsername() const
+{
+    return _username;
 }

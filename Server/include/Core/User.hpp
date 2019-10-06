@@ -27,6 +27,7 @@ namespace bbl::srv
             void signin(const std::string &username);
             void signout();
             INetworkClient *getNetworkPart() const;
+            std::string getUsername() const;
     };
 
 }
