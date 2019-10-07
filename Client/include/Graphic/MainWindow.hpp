@@ -9,6 +9,8 @@
 
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include "../Core/Client.hpp"
+#include "ContactList.hpp"
 #include "LoginForm.hpp"
 #include "RegisterForm.hpp"
 
@@ -20,15 +22,18 @@ namespace bbl::cli::graphic
     {
         Q_OBJECT
         private:
+            Client cli;
             QPushButton *registerButton;
             QPushButton *loginButton;
             RegisterForm *registerForm;
             LoginForm *loginForm;
+            ContactList *contactList;
         private slots:
             void onRegisterButtonPressed();
             void onLoginButtonPressed();
         public:
-            MainWindow(QWidget *parent = nullptr);
+            MainWindow(char *ip, int port, QWidget *parent = nullptr);
             ~MainWindow();
+            void showContactList();
     };
 }

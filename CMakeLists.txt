@@ -25,14 +25,16 @@ find_package(Threads)
 
 add_executable(client
     Client/src/main.cpp
-    Client/src/Form.cpp
-    Client/include/Form.hpp
-    Client/src/LoginForm.cpp
-    Client/include/LoginForm.hpp
-    Client/src/RegisterForm.cpp
-    Client/include/RegisterForm.hpp
-    Client/src/MainWindow.cpp
-    Client/include/MainWindow.hpp
+    Client/src/Graphic/ContactList.cpp
+    Client/include/Graphic/ContactList.hpp
+    Client/src/Graphic/Form.cpp
+    Client/include/Graphic/Form.hpp
+    Client/src/Graphic/LoginForm.cpp
+    Client/include/Graphic/LoginForm.hpp
+    Client/src/Graphic/RegisterForm.cpp
+    Client/include/Graphic/RegisterForm.hpp
+    Client/src/Graphic/MainWindow.cpp
+    Client/include/Graphic/MainWindow.hpp
     Client/src/Network/BoostTcpClient.cpp
     Client/src/Core/Client.cpp
 )

@@ -6,19 +6,22 @@
 */
 
 #include <QtWidgets/QVBoxLayout>
-#include "../include/MainWindow.hpp"
+#include "../../include/Network/BoostTcpClient.hpp"
+#include "../../include/Graphic/MainWindow.hpp"
 
 using namespace bbl::cli::graphic;
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
+MainWindow::MainWindow(char *ip, int port, QWidget *parent) :
+QMainWindow(parent), cli(new BoostTcpClient(ip, port))
 {
     QWidget *centralWidget = new QWidget();
     QVBoxLayout *layout = new QVBoxLayout();
 
+    this->registerButton = new QPushButton(tr("Register"));
+    this->loginButton = new QPushButton(tr("Login"));
     this->registerForm = new RegisterForm();
     this->loginForm = new LoginForm();
-    this->registerButton = new QPushButton("Register");
-    this->loginButton = new QPushButton("Login");
+    this->contactList = new ContactList();
 
     layout->addWidget(this->registerButton);
     layout->addWidget(this->loginButton);
@@ -41,4 +44,9 @@ void MainWindow::onRegisterButtonPressed()
 void MainWindow::onLoginButtonPressed()
 {
     this->setCentralWidget(this->loginForm);
+}
+
+void MainWindow::showContactList()
+{
+    this->setCentralWidget(this->contactList);
 }

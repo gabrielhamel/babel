@@ -5,7 +5,7 @@
 ** RegisterForm
 */
 
-#include "../include/RegisterForm.hpp"
+#include "../../include/Graphic/RegisterForm.hpp"
 
 using namespace bbl::cli::graphic::form;
 

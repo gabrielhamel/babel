@@ -5,7 +5,7 @@
 ** LoginForm
 */
 
-#include "../include/LoginForm.hpp"
+#include "../../include/Graphic/LoginForm.hpp"
 
 using namespace bbl::cli::graphic::form;
 

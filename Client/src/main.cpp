@@ -6,14 +6,16 @@
 */
 
 #include <QtWidgets/QApplication>
-#include "../include/MainWindow.hpp"
+#include "../include/Graphic/MainWindow.hpp"
 
 using namespace bbl::cli::graphic;
 
 int main(int argc, char *argv[])
 {
+    if (argc != 3)
+        return (84);
     QApplication a(argc, argv);
-    MainWindow w;
+    MainWindow w(argv[1], atoi(argv[2]));
 
     w.show();
     return a.exec();
