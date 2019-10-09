@@ -10,8 +10,17 @@
 AudioData::AudioData()
 {
     _audioParameters = new AudioParameters();
-    _frameIndex = _audioParameters->_recordTime + _audioParameters->_sampleRate;
-    _maxFrameIndex = 0;
+    _maxFrameIndex = _audioParameters->_recordTime + _audioParameters->_sampleRate;
+    _frameIndex = 0;
+    int numSamples = _maxFrameIndex * _audioParameters->_channelNumber;
+    int numBytes = numSamples * sizeof(float);
+    _recordSamples = new float[numBytes];
+
+    for (int i = 0; i < numSamples; i++)
+        _recordSamples[i] = 0;
+            
+    if (_recordSamples == NULL )
+        throw std::runtime_error("Empty recordSamples");
 }
 
 AudioData::AudioData(int frameIndex, int maxFrameIndex)
@@ -22,32 +31,3 @@ AudioData::AudioData(int frameIndex, int maxFrameIndex)
 }
 
 AudioData::~AudioData() {}
-
-AudioParameters *AudioData::getAudioParameters() const
-{
-    return _audioParameters;
-}
-
-std::vector<float> AudioData::getRecorderSamples() const
-{
-    return _recordSamples;
-}
-
-float AudioData::getElemRecordSamples(std::size_t index) const
-{
-    if (_recordSamples.size() >= index)
-        return _recordSamples.at(index);
-
-    std::cerr << "Error with the index, it's above the size of recordedSamples" << std::endl;
-    return 0;
-}
-
-void AudioData::setRecordedSamples(const std::vector<float> recordedSamples)
-{
-    _recordSamples = recordedSamples;
-}
-
-void AudioData::addRecordedSample(const float recordedSamples)
-{
-    _recordSamples.push_back(recordedSamples);
-}

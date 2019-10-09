@@ -7,19 +7,35 @@
 
 #include <QtWidgets/QApplication>
 #include "../include/Graphic/MainWindow.hpp"
+#include "AudioManager.hpp"
 
 using namespace bbl::cli::graphic;
 
-int main(int argc, char **argv)
-{
-    if (argc != 3)
-        return (84);
-    QApplication a(argc, argv);
-    MainWindow w(argv[1], atoi(argv[2]));
 
-    w.show();
-    return a.exec();
+int main(int ac, char **av)
+{
+    AudioManager *audiomanager = new AudioManager();
+    float *data;
+
+    audiomanager->startRecord();
+    data = audiomanager->getDataSamples();
+    //sendData
+    //RecupData
+    audiomanager->setDataSamples(data);
+    audiomanager->playRecord();
+    return (0);
 }
+
+// int main(int argc, char **argv)
+// {
+//     if (argc != 3)
+//         return (84);
+//     QApplication a(argc, argv);
+//     MainWindow w(argv[1], atoi(argv[2]));
+
+//     w.show();
+//     return a.exec();
+// }
 
 // #include <iostream>
 // #include "BoostTcpClient.hpp"

@@ -18,17 +18,12 @@ class AudioData {
     public:
         int _frameIndex;
         int _maxFrameIndex;
-        std::vector<float> _recordSamples;
+        float *_recordSamples;
         AudioParameters *_audioParameters;
 
     public:
         AudioData();
         AudioData(int frameIndex, int maxFrameIndex);
+        
         ~AudioData();
-
-        AudioParameters *getAudioParameters() const;
-        std::vector<float> getRecorderSamples() const;
-        float getElemRecordSamples(std::size_t index) const;
-        void setRecordedSamples(const std::vector<float> recordSamples);
-        void addRecordedSample(const float recordedSamples);
 };

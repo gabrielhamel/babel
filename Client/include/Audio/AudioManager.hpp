@@ -28,4 +28,7 @@ class AudioManager {
         AudioManager();
         ~AudioManager();
         void startRecord();
+        void playRecord();
+        float *getDataSamples() const;
+        void setDataSamples(float *data);
 };
