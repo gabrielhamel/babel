@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
+add_definitions("-fPIC")
+
 project(Babel LANGUAGES CXX)
 
 # Conan
@@ -16,13 +18,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-# SQLite3
-find_package(SQLite3)
-
-# Boost
-find_package(Boost 1.71.0 REQUIRED COMPONENTS system thread)
-find_package(Threads)
-
 add_executable(client
     Client/src/main.cpp
     Client/src/Graphic/ContactList.cpp
@@ -37,6 +32,11 @@ add_executable(client
     Client/include/Graphic/MainWindow.hpp
     Client/src/Network/BoostTcpClient.cpp
     Client/src/Core/Client.cpp
+    Client/src/Audio/AudioData.cpp
+    Client/src/Audio/AudioManager.cpp
+    Client/src/Audio/PortAudioInput.cpp
+    Client/src/Audio/PortAudioOutput.cpp
+    Client/src/Audio/PortAudioStream.cpp
 )
 
 # No Qt header
@@ -44,11 +44,10 @@ target_include_directories(
                             client PUBLIC
                             Client/include/Network
                             Client/include/Core
+                            Client/include/Audio
                           )
 
-target_link_libraries(client PRIVATE Qt5::Widgets)
-target_link_libraries(client PRIVATE ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})
-target_link_libraries(client PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(client PRIVATE ${CONAN_LIBS} Qt5::Widgets)
 
 # Server
 add_executable( server
@@ -60,15 +59,16 @@ add_executable( server
                 Server/src/Core/CommandParser.cpp
                 Server/src/Core/User.cpp
               )
+
 target_include_directories( server PUBLIC
                             Server/include
                             Server/include/Network
                             Server/include/Storage
                             Server/include/Core
                           )
+
 target_include_directories( server PUBLIC
                             ${SQLITE3_INCLUDE_DIRS}
                           )
-target_link_libraries(server ${Boost_SYSTEM_LIBRARY} ${Boost_THREAD_LIBRARY})
-target_link_libraries(server ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(server ${SQLITE3_LIBRARIES})
+
+target_link_libraries(server PRIVATE ${CONAN_LIBS})

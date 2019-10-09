@@ -10,7 +10,7 @@
 
 using namespace bbl::cli::graphic;
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
     if (argc != 3)
         return (84);
