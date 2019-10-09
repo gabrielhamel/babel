@@ -15,10 +15,11 @@ AudioData::AudioData()
     int numSamples = _maxFrameIndex * _audioParameters->_channelNumber;
     int numBytes = numSamples * sizeof(float);
     _recordSamples = new float[numBytes];
+    _recordSize = numBytes;
 
     for (int i = 0; i < numSamples; i++)
         _recordSamples[i] = 0;
-            
+
     if (_recordSamples == NULL )
         throw std::runtime_error("Empty recordSamples");
 }

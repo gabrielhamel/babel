@@ -69,3 +69,8 @@ void AudioManager::setDataSamples(float *data)
 {
     _data->_recordSamples = data;
 }
+
+std::size_t AudioManager::getSizeSamples() const
+{
+    return _data->_recordSize;
+}

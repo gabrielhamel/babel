@@ -19,11 +19,11 @@ class AudioData {
         int _frameIndex;
         int _maxFrameIndex;
         float *_recordSamples;
+        std::size_t _recordSize;
         AudioParameters *_audioParameters;
 
     public:
         AudioData();
         AudioData(int frameIndex, int maxFrameIndex);
-        
         ~AudioData();
 };

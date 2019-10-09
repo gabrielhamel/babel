@@ -30,5 +30,6 @@ class AudioManager {
         void startRecord();
         void playRecord();
         float *getDataSamples() const;
+        std::size_t getSizeSamples() const;
         void setDataSamples(float *data);
 };

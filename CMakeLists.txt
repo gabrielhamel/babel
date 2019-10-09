@@ -31,6 +31,8 @@ add_executable(client
     Client/src/Graphic/MainWindow.cpp
     Client/include/Graphic/MainWindow.hpp
     Client/src/Network/BoostTcpClient.cpp
+    Client/src/Network/BoostUdpClient.cpp
+    Client/src/Network/Packet.cpp
     Client/src/Core/Client.cpp
     Client/src/Audio/AudioData.cpp
     Client/src/Audio/AudioManager.cpp
