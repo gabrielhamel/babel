@@ -17,7 +17,7 @@ class AudioParameters {
         const std::size_t _channelNumber;
 
     public:
-        AudioParameters(): _sampleRate(44100), _framePerSecond(512), _recordTime(2), _channelNumber(2) { }
+        AudioParameters(): _sampleRate(44100), _framePerSecond(512), _recordTime(1), _channelNumber(2) { }
         ~AudioParameters();
 
         int getSampleRate() const { return _sampleRate;}

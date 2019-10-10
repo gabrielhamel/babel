@@ -30,7 +30,8 @@ void BoostUdpClient::send(const Packet &packet)
         bool next = (i == size - 1) ? false : true;
         std::vector<unsigned char> tmp = std::vector<unsigned char>(data.begin() + i * 65506, data.begin() + (i + 1) * 65506);
         tmp.insert(tmp.begin(), next);
-        usleep(200);
+        if (next)
+            usleep(200);
         _socket.send_to(buffer(tmp), udp::endpoint(address_v4::from_string(_ipv4), _port));
     }
 }

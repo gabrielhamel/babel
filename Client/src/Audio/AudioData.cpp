@@ -10,7 +10,7 @@
 AudioData::AudioData()
 {
     _audioParameters = new AudioParameters();
-    _maxFrameIndex = _audioParameters->_recordTime + _audioParameters->_sampleRate;
+    _maxFrameIndex = _audioParameters->_recordTime * _audioParameters->_sampleRate;
     _frameIndex = 0;
     int numSamples = _maxFrameIndex * _audioParameters->_channelNumber;
     int numBytes = numSamples * sizeof(float);
