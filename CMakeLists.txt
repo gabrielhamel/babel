@@ -20,15 +20,6 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 add_executable(client
     Client/src/main.cpp
-    Client/src/Graphic/ContactList.cpp
-    Client/include/Graphic/ContactList.hpp
-    Client/src/Graphic/Form.cpp
-    Client/include/Graphic/Form.hpp
-    Client/src/Graphic/LoginForm.cpp
-    Client/include/Graphic/LoginForm.hpp
-    Client/src/Graphic/RegisterForm.cpp
-    Client/include/Graphic/RegisterForm.hpp
-    Client/src/Graphic/MainWindow.cpp
     Client/include/Graphic/MainWindow.hpp
     Client/src/Network/BoostTcpClient.cpp
     Client/src/Network/BoostUdpClient.cpp
@@ -39,6 +30,13 @@ add_executable(client
     Client/src/Audio/PortAudioInput.cpp
     Client/src/Audio/PortAudioOutput.cpp
     Client/src/Audio/PortAudioStream.cpp
+    Client/src/Graphic/MainWindow.cpp
+    Client/include/Graphic/MainWindow.hpp
+    Client/src/Graphic/SigninForm.cpp
+    Client/include/Graphic/SigninForm.hpp
+    Client/src/Graphic/SignupForm.cpp
+    Client/include/Graphic/SignupForm.hpp
+    Client/src/Graphic/ressources.qrc
 )
 
 # No Qt header
@@ -67,10 +65,6 @@ target_include_directories( server PUBLIC
                             Server/include/Network
                             Server/include/Storage
                             Server/include/Core
-                          )
-
-target_include_directories( server PUBLIC
-                            ${SQLITE3_INCLUDE_DIRS}
                           )
 
 target_link_libraries(server PRIVATE ${CONAN_LIBS})

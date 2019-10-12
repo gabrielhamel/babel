@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>favicon.png</file>
+        <file>bigLogo.png</file>
+    </qresource>
+</RCC>

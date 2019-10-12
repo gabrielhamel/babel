@@ -2,7 +2,7 @@
 
 ## Build
 
-### 1) Install [Conan](https://conan.io)
+### 1) Install [Conan](https://conan.io) and [QT 5.12.5](https://wiki.qt.io/Special:Search/Install_Qt_5)
 
 ### 2) Add remote bincrafters
 ```bash

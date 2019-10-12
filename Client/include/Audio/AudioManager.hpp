@@ -7,15 +7,14 @@
 
 #pragma once
 
+#include <portaudio.h>
+#include <vector>
 #include "AudioData.hpp"
 #include "AudioParameters.hpp"
 #include "IPortAudio.hpp"
 #include "PortAudioInput.hpp"
 #include "PortAudioOutput.hpp"
 #include "PortAudioStream.hpp"
-
-#include <portaudio.h>
-#include <vector>
 
 class AudioManager {
     private:
