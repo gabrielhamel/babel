@@ -32,11 +32,15 @@ namespace bbl::cli::graphics
             QListView *_invitationsList;
             QLabel *_invitationsLabel;
             QPushButton *_invitationsReload;
+            QPushButton *_acceptInvitationButton;
+            QPushButton *_callButton;
         public:
             Contacts(QMainWindow *parent);
             ~Contacts();
         public slots:
             void refreshContacts();
             void refreshInvitations();
+            void acceptInvitation();
+            void call();
     };
 }

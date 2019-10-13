@@ -5,6 +5,7 @@
 ** Contacts
 */
 
+#include <iostream>
 #include "../../include/Graphic/Contacts.hpp"
 
 using namespace bbl::cli::graphics;
@@ -53,6 +54,19 @@ Contacts::Contacts(QMainWindow *parent)
     _contactsList->setGeometry(25 + 500, 80, 240, 355);
     _contactsList->setStyleSheet("color: white; background-color: #666666; border-radius: 9px; padding-top: 10px; padding-bottom: 10px; font-size: 20px;");
 
+    _acceptInvitationButton = new QPushButton(this);
+    _acceptInvitationButton->setIcon(QIcon(QPixmap(":/images/check.png")));
+    _acceptInvitationButton->setGeometry(125, 450, 40, 40);
+    connect(_acceptInvitationButton, SIGNAL(clicked()), this, SLOT(acceptInvitation()));
+    _acceptInvitationButton->setStyleSheet("QPushButton {color: #fff; background-color: #337ab7; border-color: #2e6da4; border-radius: 9px; margin-bottom: 0; font-weight: 400; border: 1px solid transparent; padding: 9px 12px; font-size: 14px;} QPushButton:hover {background-color: #2269a6; } QPushButton:pressed {background-color: #115895; }");
+
+    _callButton = new QPushButton(this);
+    _callButton->setIcon(QIcon(QPixmap(":/images/call.png")));
+    _callButton->setGeometry(125 + 510, 450, 40, 40);
+    connect(_callButton, SIGNAL(clicked()), this, SLOT(call()));
+    _callButton->setStyleSheet("QPushButton {color: #fff; background-color: #337ab7; border-color: #2e6da4; border-radius: 9px; margin-bottom: 0; font-weight: 400; border: 1px solid transparent; padding: 9px 12px; font-size: 14px;} QPushButton:hover {background-color: #2269a6; } QPushButton:pressed {background-color: #115895; }");
+
+
     refreshContacts();
     refreshInvitations();
 }
@@ -61,8 +75,14 @@ Contacts::~Contacts()
 {
     delete _contactsList;
     delete _contactsModel;
+    delete _contactsLabel;
+    delete _contactsReload;
     delete _invitationsList;
     delete _invitationsModel;
+    delete _invitationsLabel;
+    delete _invitationsReload;
+    delete _acceptInvitationButton;
+    delete _callButton;
 }
 
 void Contacts::refreshContacts()
@@ -81,4 +101,22 @@ void Contacts::refreshInvitations()
     for (auto &invitation : _invitations)
         list << QString::fromStdString(invitation);
     _invitationsModel->setStringList(list);
+}
+
+void Contacts::acceptInvitation()
+{
+    auto selected = _invitationsList->currentIndex().data(Qt::DisplayRole).toString();
+    if (selected == "")
+        return;
+    _window->getClient().acceptInvitation(selected.toStdString());
+    refreshContacts();
+    refreshInvitations();
+}
+
+void Contacts::call()
+{
+    auto user = _contactsList->currentIndex().data(Qt::DisplayRole).toString().toStdString();
+    if (user == "")
+        return;
+    // #TODO le call =)
 }

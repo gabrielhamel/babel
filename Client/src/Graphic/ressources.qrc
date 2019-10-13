@@ -3,5 +3,7 @@
         <file>favicon.png</file>
         <file>bigLogo.png</file>
         <file>refresh.png</file>
+        <file>check.png</file>
+        <file>call.png</file>
     </qresource>
 </RCC>
