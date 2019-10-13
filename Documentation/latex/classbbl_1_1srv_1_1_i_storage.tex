@@ -1,0 +1,44 @@
+\hypertarget{classbbl_1_1srv_1_1_i_storage}{}\section{bbl\+:\+:srv\+:\+:I\+Storage Class Reference}
+\label{classbbl_1_1srv_1_1_i_storage}\index{bbl\+::srv\+::\+I\+Storage@{bbl\+::srv\+::\+I\+Storage}}
+
+
+Inheritance diagram for bbl\+:\+:srv\+:\+:I\+Storage\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classbbl_1_1srv_1_1_i_storage__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_i_storage_ae573fbede5dc6e839878d105d5ed9c7f}\label{classbbl_1_1srv_1_1_i_storage_ae573fbede5dc6e839878d105d5ed9c7f}} 
+virtual void {\bfseries register\+User} (const std\+::string \&username, const std\+::string \&password) const =0
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_i_storage_a25f5dd59922a95e81cce022af1446f55}\label{classbbl_1_1srv_1_1_i_storage_a25f5dd59922a95e81cce022af1446f55}} 
+virtual void {\bfseries login\+User} (const std\+::string \&username, const std\+::string \&password) const =0
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_i_storage_afdca8afce2681f2a6a7388962bb578f9}\label{classbbl_1_1srv_1_1_i_storage_afdca8afce2681f2a6a7388962bb578f9}} 
+virtual std\+::vector$<$ std\+::string $>$ {\bfseries get\+Contacts} (const std\+::string \&username) const =0
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_i_storage_a2e3541635272914292fe5e70dd5d071b}\label{classbbl_1_1srv_1_1_i_storage_a2e3541635272914292fe5e70dd5d071b}} 
+virtual std\+::vector$<$ std\+::string $>$ {\bfseries get\+Requests} (const std\+::string \&username) const =0
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_i_storage_aff2a9b83a9076eba98b837821d8593ab}\label{classbbl_1_1srv_1_1_i_storage_aff2a9b83a9076eba98b837821d8593ab}} 
+virtual void {\bfseries add\+Request} (const std\+::string \&owner, const std\+::string \&contact) const =0
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_i_storage_a2ff99f698e40d39a298746d53602e990}\label{classbbl_1_1srv_1_1_i_storage_a2ff99f698e40d39a298746d53602e990}} 
+virtual void {\bfseries accept\+Request} (const std\+::string \&owner, const std\+::string \&contact) const =0
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_i_storage_ac1d86f612146cfc3188fa06b4ea767ea}\label{classbbl_1_1srv_1_1_i_storage_ac1d86f612146cfc3188fa06b4ea767ea}} 
+virtual void {\bfseries set\+Udp\+Parameters} (const std\+::string \&owner, const std\+::string \&ipv4, const std\+::string \&port) const =0
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_i_storage_acc8ca98c6bb8059c5bfeef056e5a146b}\label{classbbl_1_1srv_1_1_i_storage_acc8ca98c6bb8059c5bfeef056e5a146b}} 
+virtual std\+::array$<$ std\+::string, 2 $>$ {\bfseries get\+Udp\+Parameters} (const std\+::string \&owner, const std\+::string \&me) const =0
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Server/include/\+Storage/I\+Storage.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,45 @@
+\subsection*{Build}
+
+\subsubsection*{1) Install \href{https://conan.io}{\tt Conan} and \href{https://wiki.qt.io/Special:Search/Install_Qt_5}{\tt QT 5.\+12.\+5}}
+
+\#\#\# 2) Add remote bincrafters 
+\begin{DoxyCode}
+conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+\end{DoxyCode}
+
+
+\#\#\# 3) Create build directory 
+\begin{DoxyCode}
+mkdir build && cd build
+\end{DoxyCode}
+
+
+\#\#\# 4) Install conan dependency 
+\begin{DoxyCode}
+conan install ..
+\end{DoxyCode}
+
+
+There may be problems during the installation. To solve that, add {\ttfamily -\/-\/build} with dependency at the end of the command
+
+\subsubsection*{5) Create your own build configuration}
+
+To check the configuration of build 
+\begin{DoxyCode}
+cmake .. -G
+\end{DoxyCode}
+ Build with specify configuration (eg. change \char`\"{}\+Unix Makefile\char`\"{} by your configuration name) 
+\begin{DoxyCode}
+cmake .. -G "Unix Makefiles"
+\end{DoxyCode}
+
+
+\subsubsection*{6) Launch the build}
+
+If you have Unix Makefiles 
+\begin{DoxyCode}
+make
+\end{DoxyCode}
+ else if you have Visual studio project, just open and build
+
+\subsubsection*{8) Launch the binary}

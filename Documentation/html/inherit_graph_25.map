@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$class_i_input.html" title="IInput" alt="" coords="19,5,74,32"/>
+<area shape="rect" id="node2" href="$class_port_audio_input.html" title="PortAudioInput" alt="" coords="141,31,249,57"/>
+<area shape="rect" id="node3" href="$class_i_output.html" title="IOutput" alt="" coords="14,107,79,133"/>
+<area shape="rect" id="node4" href="$class_port_audio_output.html" title="PortAudioOutput" alt="" coords="136,93,255,120"/>
+<area shape="rect" id="node5" href="$class_i_port_audio.html" title="IPortAudio" alt="" coords="5,56,88,83"/>
+</map>

@@ -1,0 +1,50 @@
+\hypertarget{classbbl_1_1cli_1_1_client}{}\section{bbl\+:\+:cli\+:\+:Client Class Reference}
+\label{classbbl_1_1cli_1_1_client}\index{bbl\+::cli\+::\+Client@{bbl\+::cli\+::\+Client}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_ab5ab3a77c84e5bc39dc653cef343b8ac}\label{classbbl_1_1cli_1_1_client_ab5ab3a77c84e5bc39dc653cef343b8ac}} 
+{\bfseries Client} (\hyperlink{classbbl_1_1cli_1_1_i_tcp_client}{I\+Tcp\+Client} $\ast$tcp\+Connection)
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_acfc496485b229bd8c2af8d5492f16c3f}\label{classbbl_1_1cli_1_1_client_acfc496485b229bd8c2af8d5492f16c3f}} 
+{\bfseries Client} (const \hyperlink{classbbl_1_1cli_1_1_client}{Client} \&)=delete
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_abd2ba96ec1ebdbbf67836257dc683332}\label{classbbl_1_1cli_1_1_client_abd2ba96ec1ebdbbf67836257dc683332}} 
+\hyperlink{classbbl_1_1cli_1_1_client}{Client} \& {\bfseries operator=} (const \hyperlink{classbbl_1_1cli_1_1_client}{Client} \&)=delete
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_afcbe6046c74e86b64c1b861f5e58ffbd}\label{classbbl_1_1cli_1_1_client_afcbe6046c74e86b64c1b861f5e58ffbd}} 
+bool {\bfseries is\+Logged} () const
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_afecc09190f29820f373b35b13f42338c}\label{classbbl_1_1cli_1_1_client_afecc09190f29820f373b35b13f42338c}} 
+void {\bfseries registration} (const std\+::string \&username, const std\+::string \&password)
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_abf1626c0fd720a8ba69b811b718411da}\label{classbbl_1_1cli_1_1_client_abf1626c0fd720a8ba69b811b718411da}} 
+void {\bfseries login} (const std\+::string \&username, const std\+::string \&password)
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_aa977795294407c10fe843b5bc28b6685}\label{classbbl_1_1cli_1_1_client_aa977795294407c10fe843b5bc28b6685}} 
+void {\bfseries logout} ()
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_af2df5e5c39d2d109a3a0efdc7db110b8}\label{classbbl_1_1cli_1_1_client_af2df5e5c39d2d109a3a0efdc7db110b8}} 
+void {\bfseries request\+Invitation} (const std\+::string \&contact)
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_affd3e03b029a61eb0a090cdc059538ec}\label{classbbl_1_1cli_1_1_client_affd3e03b029a61eb0a090cdc059538ec}} 
+void {\bfseries accept\+Invitation} (const std\+::string \&contact)
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_a1a53802b4412dbb0373e56258b91daab}\label{classbbl_1_1cli_1_1_client_a1a53802b4412dbb0373e56258b91daab}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+Invitations} ()
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_ae87912ca10ad9f26abeeccc41f24712f}\label{classbbl_1_1cli_1_1_client_ae87912ca10ad9f26abeeccc41f24712f}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+Contacts} ()
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_a293eae6663d07bd1d95a04a49b712bfb}\label{classbbl_1_1cli_1_1_client_a293eae6663d07bd1d95a04a49b712bfb}} 
+void {\bfseries set\+Udp\+Setting} (const std\+::string \&ipv4, unsigned short port)
+\item 
+\mbox{\Hypertarget{classbbl_1_1cli_1_1_client_aa3bb631819f71fd2f0423dd6dc410068}\label{classbbl_1_1cli_1_1_client_aa3bb631819f71fd2f0423dd6dc410068}} 
+std\+::pair$<$ std\+::string, unsigned short $>$ {\bfseries get\+Udp\+Settings} (const std\+::string \&contact)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Client/include/\+Core/Client.\+hpp\item 
+Client/src/\+Core/Client.\+cpp\end{DoxyCompactItemize}

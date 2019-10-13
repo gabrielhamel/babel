@@ -1,0 +1,139 @@
+{\bfseries username}\+: Nom de l\textquotesingle{}utilisateur, unique et composé de 1 à 32 caractères alphanumériques {\bfseries password}\+: Mot de passe de l\textquotesingle{}utilisateur, composé de 8 à 32 caractères alphanumériques \#\# Création d\textquotesingle{}un utilisateur 
+\begin{DoxyCode}
+REGISTER <username> <password>
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK Account created
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+
+
+\#\# Connexion 
+\begin{DoxyCode}
+LOGIN <username> <password>
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK User logged in
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+
+
+\#\# Déconnexion 
+\begin{DoxyCode}
+LOGOUT
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK User logged out
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+
+
+\#\# Soumettre une invitation 
+\begin{DoxyCode}
+INVITE\_CONTACT <username>
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK Request done
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+
+
+\#\# Obtenir les invitations en cours 
+\begin{DoxyCode}
+GET\_INVITE
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK <username1> <username2> ...
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+
+
+\#\# Accepter une invitation 
+\begin{DoxyCode}
+ACCEPT\_INVITE <username>
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK Invite accepted
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+
+
+\#\# Obtenir sa liste de contacts 
+\begin{DoxyCode}
+CONTACT\_LIST
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK <username1> <username2> ...
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+
+
+\#\# Appelez un contact 
+\begin{DoxyCode}
+CALL <username>
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK <ipv4> <port>
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+
+
+\#\# Parametrez ses données udp 
+\begin{DoxyCode}
+SET\_UDP <ipv4> <port>
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+
+
+\#\# Obtenir les données udp d\textquotesingle{}un contact 
+\begin{DoxyCode}
+GET\_UDP <username>
+\end{DoxyCode}
+ \#\#\#\# Réponses\+: 
+\begin{DoxyCode}
+OK <ipv4> <port>
+\end{DoxyCode}
+ 
+\begin{DoxyCode}
+KO <error>
+\end{DoxyCode}
+ 

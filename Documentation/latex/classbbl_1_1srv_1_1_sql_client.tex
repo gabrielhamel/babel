@@ -1,0 +1,64 @@
+\hypertarget{classbbl_1_1srv_1_1_sql_client}{}\section{bbl\+:\+:srv\+:\+:Sql\+Client Class Reference}
+\label{classbbl_1_1srv_1_1_sql_client}\index{bbl\+::srv\+::\+Sql\+Client@{bbl\+::srv\+::\+Sql\+Client}}
+
+
+Inheritance diagram for bbl\+:\+:srv\+:\+:Sql\+Client\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classbbl_1_1srv_1_1_sql_client__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for bbl\+:\+:srv\+:\+:Sql\+Client\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classbbl_1_1srv_1_1_sql_client__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_a5e36d3c286d32aa8ddf172e1563ead62}\label{classbbl_1_1srv_1_1_sql_client_a5e36d3c286d32aa8ddf172e1563ead62}} 
+{\bfseries Sql\+Client} (const std\+::string \&database)
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_a9644bdc97fde0a7aeb075f67d789a6f9}\label{classbbl_1_1srv_1_1_sql_client_a9644bdc97fde0a7aeb075f67d789a6f9}} 
+{\bfseries Sql\+Client} (const \hyperlink{classbbl_1_1srv_1_1_sql_client}{Sql\+Client} \&)=delete
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_a09faaad41f17bd1021c457379307bcd3}\label{classbbl_1_1srv_1_1_sql_client_a09faaad41f17bd1021c457379307bcd3}} 
+\hyperlink{classbbl_1_1srv_1_1_sql_client}{Sql\+Client} \& {\bfseries operator=} (const \hyperlink{classbbl_1_1srv_1_1_sql_client}{Sql\+Client} \&)=delete
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_ad335279e409901ac94d2dfaf3855a04d}\label{classbbl_1_1srv_1_1_sql_client_ad335279e409901ac94d2dfaf3855a04d}} 
+void {\bfseries register\+User} (const std\+::string \&username, const std\+::string \&password) const
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_a7f0661b2848724af3b2dc79aca3a8d9f}\label{classbbl_1_1srv_1_1_sql_client_a7f0661b2848724af3b2dc79aca3a8d9f}} 
+void {\bfseries login\+User} (const std\+::string \&username, const std\+::string \&password) const
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_ade6054df37f4bc4753f029c999e44778}\label{classbbl_1_1srv_1_1_sql_client_ade6054df37f4bc4753f029c999e44778}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+Contacts} (const std\+::string \&username) const
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_af9522692004b248db03e2b27b2549889}\label{classbbl_1_1srv_1_1_sql_client_af9522692004b248db03e2b27b2549889}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries get\+Requests} (const std\+::string \&username) const
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_ae9e4dde1aeec2412b7ee1c692f5cb11d}\label{classbbl_1_1srv_1_1_sql_client_ae9e4dde1aeec2412b7ee1c692f5cb11d}} 
+void {\bfseries add\+Request} (const std\+::string \&owner, const std\+::string \&contact) const
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_abab7af1c3fe96c98c8c4d5b1c3a1389c}\label{classbbl_1_1srv_1_1_sql_client_abab7af1c3fe96c98c8c4d5b1c3a1389c}} 
+void {\bfseries accept\+Request} (const std\+::string \&owner, const std\+::string \&contact) const
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_adbf1c95f96b24d2cc25d29672d53611d}\label{classbbl_1_1srv_1_1_sql_client_adbf1c95f96b24d2cc25d29672d53611d}} 
+void {\bfseries set\+Udp\+Parameters} (const std\+::string \&owner, const std\+::string \&ipv4, const std\+::string \&port) const
+\item 
+\mbox{\Hypertarget{classbbl_1_1srv_1_1_sql_client_a8055ff59a2b1b019f1d301849bfe11c9}\label{classbbl_1_1srv_1_1_sql_client_a8055ff59a2b1b019f1d301849bfe11c9}} 
+std\+::array$<$ std\+::string, 2 $>$ {\bfseries get\+Udp\+Parameters} (const std\+::string \&owner, const std\+::string \&me) const
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Server/include/\+Storage/Sql\+Client.\+hpp\item 
+Server/src/\+Storage/Sql\+Client.\+cpp\end{DoxyCompactItemize}

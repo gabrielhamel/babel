@@ -1,0 +1,4 @@
+<map id="IPortAudio" name="IPortAudio">
+<area shape="rect" id="node2" href="$class_port_audio_input.html" title="PortAudioInput" alt="" coords="5,80,113,107"/>
+<area shape="rect" id="node3" href="$class_port_audio_output.html" title="PortAudioOutput" alt="" coords="137,80,256,107"/>
+</map>
