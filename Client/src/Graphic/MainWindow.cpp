@@ -25,10 +25,6 @@ QMainWindow(nullptr), _client(nullptr)
     setStyleSheet("background-color: #444444");
     setWindowTitle("Babel");
     setCentralWidget(new SigninForm(this));
-
-    // Pour moi
-    //_client->login("gabriel", "qwkAhd@S");
-    //setCentralWidget(new Contacts(this));
 }
 
 MainWindow::~MainWindow()
