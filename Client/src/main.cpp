@@ -6,17 +6,25 @@
 */
 
 #include <QtWidgets/QApplication>
+#include <iostream>
 #include "../include/Graphic/MainWindow.hpp"
 
 using namespace bbl::cli::graphics;
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-    QApplication application(argc, argv);
-    MainWindow window;
+    int res;
 
-    window.show();
-    return application.exec();
+    try {
+        QApplication application(argc, argv);
+        MainWindow window;
+        window.show();
+        res = application.exec();
+    } catch (const std::exception &err) {
+        std::cerr << err.what() << std::endl;
+        return 84;
+    }
+    return res;
 }
 
 // #include <iostream>

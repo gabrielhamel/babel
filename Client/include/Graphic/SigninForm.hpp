@@ -11,6 +11,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include "IWindow.hpp"
 
 namespace bbl::cli::graphics
 {
@@ -25,8 +26,11 @@ namespace bbl::cli::graphics
             QPushButton *_loginButton;
             QLabel *_notRegisteredLabel;
             QPushButton *_signUpButton;
+            IWindow *_window;
         public:
-            SigninForm(QWidget *parent);
+            SigninForm(QMainWindow *parent);
             ~SigninForm();
+        public slots:
+            void login();
     };
 }

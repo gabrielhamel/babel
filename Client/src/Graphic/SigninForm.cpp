@@ -5,12 +5,15 @@
 ** SigninForm
 */
 
+#include <iostream>
 #include "../../include/Graphic/SigninForm.hpp"
 
 using namespace bbl::cli::graphics;
 
-SigninForm::SigninForm(QWidget *parent)
+SigninForm::SigninForm(QMainWindow *parent)
 {
+    _window = reinterpret_cast<IWindow *>(parent);
+
     _imageLabel = new QLabel(this);
     QImage favicon(":/images/favicon.png");
     _imageLabel->setMinimumHeight(100);
@@ -48,6 +51,7 @@ SigninForm::SigninForm(QWidget *parent)
     _loginButton->setMinimumHeight(45);
     _loginButton->setMinimumWidth(static_cast<int>(static_cast<float>(parent->width()) * 0.60f));
     _loginButton->setGeometry(_loginButton->x() + static_cast<int>(static_cast<float>(parent->width()) * 0.20f), _loginButton->y() + 350, _loginButton->width(), _loginButton->height());
+    connect(_loginButton, SIGNAL(clicked()), this, SLOT(login()));
     _loginButton->setStyleSheet("QPushButton {color: #fff; background-color: #337ab7; border-color: #2e6da4; border-radius: 9px; margin-bottom: 0; font-weight: 400; border: 1px solid transparent; padding: 9px 12px; font-size: 14px;} QPushButton:hover {background-color: #2269a6; } QPushButton:pressed {background-color: #115895; }");
 
     _notRegisteredLabel = new QLabel(this);
@@ -74,4 +78,9 @@ SigninForm::~SigninForm()
     delete _loginButton;
     delete _notRegisteredLabel;
     delete _signUpButton;
+}
+
+void SigninForm::login()
+{
+    _window->login(_loginText->text(), _passwordText->text());
 }
