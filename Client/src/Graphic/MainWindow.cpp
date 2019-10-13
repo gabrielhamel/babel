@@ -24,12 +24,7 @@ QMainWindow(nullptr), _client(nullptr), _ctForm(nullptr)
     setFixedSize(QSize(420, 500));
     setStyleSheet("background-color: #444444");
     setWindowTitle("Babel");
-    //setCentralWidget(new SigninForm(this));
-
-    // Pour moi
-    _client->login("gabriel", "de3be2f3");
-    _ctForm = new Contacts(this, args[3].toStdString());
-    setCentralWidget(_ctForm);
+    setCentralWidget(new SigninForm(this));
 }
 
 MainWindow::~MainWindow()
