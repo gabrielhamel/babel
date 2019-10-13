@@ -75,7 +75,7 @@ Contacts::Contacts(QMainWindow *parent)
 
     _inviteLabel = new QLabel(this);
     _inviteLabel->setText("Search");
-    _inviteLabel->setMinimumWidth(200);
+    _inviteLabel->setMinimumWidth(190);
     _inviteLabel->setGeometry(330, 20, _inviteLabel->width(), _inviteLabel->height() + 10);
     _inviteLabel->setStyleSheet("color: white; font-size: 38px;");
 
