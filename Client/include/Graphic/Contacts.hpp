@@ -25,9 +25,18 @@ namespace bbl::cli::graphics
             std::vector <std::string> _contacts;
             QStringListModel *_contactsModel;
             QListView *_contactsList;
+            QLabel *_contactsLabel;
+            QPushButton *_contactsReload;
+            std::vector <std::string> _invitations;
+            QStringListModel *_invitationsModel;
+            QListView *_invitationsList;
+            QLabel *_invitationsLabel;
+            QPushButton *_invitationsReload;
         public:
             Contacts(QMainWindow *parent);
             ~Contacts();
+        public slots:
             void refreshContacts();
+            void refreshInvitations();
     };
 }
