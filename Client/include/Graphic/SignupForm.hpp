@@ -11,6 +11,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include "IWindow.hpp"
 
 namespace bbl::cli::graphics
 {
@@ -23,10 +24,12 @@ namespace bbl::cli::graphics
             QLineEdit *_passwordText;
             QLineEdit *_passwordConfirmationText;
             QPushButton *_backButton;
+            IWindow *_window;
         public:
             SignupForm(QWidget *parent);
             ~SignupForm();
         public slots:
             void onPasswordEdit(const QString &text);
+            void signup();
     };
 }

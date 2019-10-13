@@ -11,6 +11,8 @@ using namespace bbl::cli::graphics;
 
 SignupForm::SignupForm(QWidget *parent)
 {
+    _window = dynamic_cast<IWindow *>(parent);
+
     _loginText = new QLineEdit(this);
     _loginText->setPlaceholderText("Username");
     _loginText->setMaxLength(32);
@@ -42,6 +44,7 @@ SignupForm::SignupForm(QWidget *parent)
     _signInButton->setMinimumHeight(45);
     _signInButton->setMinimumWidth(static_cast<int>(static_cast<float>(parent->width()) * 0.60f));
     _signInButton->setGeometry(_signInButton->x() + static_cast<int>(static_cast<float>(parent->width()) * 0.20f), _signInButton->y() + 330, _signInButton->width(), _signInButton->height());
+    connect(_signInButton, SIGNAL(clicked()), this, SLOT(signup()));
     _signInButton->setStyleSheet("QPushButton {color: #fff; background-color: #337ab7; border-color: #2e6da4; border-radius: 9px; margin-bottom: 0; font-weight: 400; border: 1px solid transparent; padding: 9px 12px; font-size: 14px;} QPushButton:hover {background-color: #2269a6; } QPushButton:pressed {background-color: #115895; }");
 
     _backButton = new QPushButton(this);
@@ -71,4 +74,11 @@ void SignupForm::onPasswordEdit(const QString &text)
         this->_passwordText->setStyleSheet("border: 1px solid red; color:white; background-color: #666666; border-radius: 9px; padding-left: 10px; padding-right: 10px; font-size: 20px;");
         this->_passwordConfirmationText->setStyleSheet("border: 1px solid red; color:white; background-color: #666666; border-radius: 9px; padding-left: 10px; padding-right: 10px; font-size: 20px;");
     }
+}
+
+void SignupForm::signup()
+{
+    if (this->_passwordText->text() != this->_passwordConfirmationText->text())
+        return;
+    _window->signup(_loginText->text(), _passwordText->text());
 }

@@ -12,7 +12,7 @@ using namespace bbl::cli::graphics;
 
 SigninForm::SigninForm(QMainWindow *parent)
 {
-    _window = reinterpret_cast<IWindow *>(parent);
+    _window = dynamic_cast<IWindow *>(parent);
 
     _imageLabel = new QLabel(this);
     QImage favicon(":/images/favicon.png");

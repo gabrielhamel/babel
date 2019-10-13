@@ -10,6 +10,7 @@
 #include <QtWidgets/QMainWindow>
 #include "SigninForm.hpp"
 #include "SignupForm.hpp"
+#include "Client.hpp"
 #include "BoostTcpClient.hpp"
 #include "IWindow.hpp"
 
@@ -20,11 +21,13 @@ namespace bbl::cli::graphics
     {
         Q_OBJECT
         private:
-            ITcpClient *_client;
+            ITcpClient *_socket;
+            Client *_client;
         public:
             MainWindow();
             ~MainWindow();
             void login(const QString &login, const QString &password);
+            void signup(const QString &login, const QString &password);
         public slots:
             void goSignup();
             void goSignin();

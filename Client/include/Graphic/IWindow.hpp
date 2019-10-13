@@ -17,6 +17,7 @@ namespace bbl::cli::graphics
         public:
             virtual ~IWindow() = default;
             virtual void login(const QString &login, const QString &password) = 0;
+            virtual void signup(const QString &login, const QString &password) = 0;
     };
 
 }
