@@ -10,7 +10,8 @@
 
 using namespace bbl::cli::graphics;
 
-Contacts::Contacts(QMainWindow *parent)
+Contacts::Contacts(QMainWindow *parent, const std::string &myIpv4) :
+_he(nullptr), _me(nullptr)
 {
     _window = dynamic_cast<IWindow *>(parent);
 
@@ -85,6 +86,9 @@ Contacts::Contacts(QMainWindow *parent)
     connect(_inviteButton, SIGNAL(clicked()), this, SLOT(invite()));
     _inviteButton->setStyleSheet("QPushButton {color: #fff; background-color: #337ab7; border-color: #2e6da4; border-radius: 9px; margin-bottom: 0; font-weight: 400; border: 1px solid transparent; padding: 9px 12px; font-size: 14px;} QPushButton:hover {background-color: #2269a6; } QPushButton:pressed {background-color: #115895; }");
 
+    _me = new BoostUdpClient("0.0.0.0", 0, true);
+    _window->getClient().setUdpSetting(myIpv4, _me->getPort());
+
     refreshContacts();
     refreshInvitations();
 }
@@ -104,6 +108,10 @@ Contacts::~Contacts()
     delete _inviteButton;
     delete _contactSearch;
     delete _inviteLabel;
+    if (_me)    
+        delete _me;
+    if (_he)
+        delete _he;
 }
 
 void Contacts::refreshContacts()
@@ -163,5 +171,13 @@ void Contacts::call()
     auto user = _contactsList->currentIndex().data(Qt::DisplayRole).toString().toStdString();
     if (user == "")
         return;
-    // #TODO le call =)
+    try {
+        auto settings = _window->getClient().getUdpSettings(user);
+
+        // Faire des trucs
+        std::cout << settings.first << " " << settings.second << std::endl;
+    
+    } catch (const std::exception &error) {
+        std::cerr << error.what() << std::endl;
+    }
 }

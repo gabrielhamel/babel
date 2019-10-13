@@ -41,6 +41,14 @@ _db(nullptr)
         throw std::runtime_error(sqlite3_errstr(rc));
     rc = sqlite3_step(res);
     sqlite3_finalize(res);
+    res = nullptr;
+    rc = sqlite3_prepare(_db,
+    "CREATE TABLE IF NOT EXISTS UdpSettings (owner VARCHAR(32) NOT NULL, ipv4 VARCHAR(32) NOT NULL, port VARCHAR(32) NOT NULL);"
+    , -1, &res, nullptr);
+    if (rc != SQLITE_OK)
+        throw std::runtime_error(sqlite3_errstr(rc));
+    rc = sqlite3_step(res);
+    sqlite3_finalize(res);
 }
 
 SqlClient::~SqlClient()
@@ -244,4 +252,62 @@ void SqlClient::acceptRequest(const std::string &owner, const std::string &conta
         throw std::runtime_error(sqlite3_errstr(rc));
     addContact(owner, contact);
     addContact(contact, owner);
+}
+
+void SqlClient::setUdpParameters(const std::string &owner, const std::string &ipv4, const std::string &port) const
+{
+    if (userExist(owner) == false)
+        throw std::runtime_error("Invalid username");
+    std::string query = "DELETE FROM UdpSettings WHERE owner = @owner";
+    sqlite3_stmt *res = nullptr;
+    int rc = sqlite3_prepare_v2(_db, query.c_str(), -1, &res, nullptr);
+    if (rc != SQLITE_OK)
+        throw std::runtime_error(sqlite3_errstr(rc));
+    int idx = sqlite3_bind_parameter_index(res, "@owner");
+    sqlite3_bind_text(res, idx, owner.c_str(), owner.length() + 1, nullptr);
+    rc = sqlite3_step(res);
+    sqlite3_finalize(res);
+    if (rc != SQLITE_DONE)
+        throw std::runtime_error(sqlite3_errstr(rc));
+    query = "INSERT INTO UdpSettings VALUES (@owner, @ipv4, @port)";
+    res = nullptr;
+    rc = sqlite3_prepare_v2(_db, query.c_str(), -1, &res, nullptr);
+    if (rc != SQLITE_OK)
+        throw std::runtime_error(sqlite3_errstr(rc));
+    idx = sqlite3_bind_parameter_index(res, "@owner");
+    sqlite3_bind_text(res, idx, owner.c_str(), owner.length() + 1, nullptr);
+    idx = sqlite3_bind_parameter_index(res, "@ipv4");
+    sqlite3_bind_text(res, idx, ipv4.c_str(), ipv4.length() + 1, nullptr);
+    idx = sqlite3_bind_parameter_index(res, "@port");
+    sqlite3_bind_text(res, idx, port.c_str(), port.length() + 1, nullptr);
+    rc = sqlite3_step(res);
+    sqlite3_finalize(res);
+    if (rc != SQLITE_DONE)
+        throw std::runtime_error(sqlite3_errstr(rc));
+}
+
+std::array<std::string, 2> SqlClient::getUdpParameters(const std::string &owner, const std::string &me) const
+{
+    if (userExist(owner) == false)
+        throw std::runtime_error("Invalid username");
+    auto contacts = getContacts(me);
+    if (std::find(contacts.begin(), contacts.end(), owner) == contacts.end())
+        throw std::runtime_error(owner + " is not your friend");
+    std::array<std::string, 2> tab_contacts;
+    std::string query = "SELECT ipv4, port FROM UdpSettings WHERE owner = @owner";
+    sqlite3_stmt *res = nullptr;
+    int rc = sqlite3_prepare_v2(_db, query.c_str(), -1, &res, nullptr);
+    if (rc != SQLITE_OK)
+        throw std::runtime_error(sqlite3_errstr(rc));
+    int idx = sqlite3_bind_parameter_index(res, "@owner");
+    sqlite3_bind_text(res, idx, owner.c_str(), owner.length() + 1, nullptr);
+    rc = sqlite3_step(res);
+    if (rc == SQLITE_DONE)
+        throw std::runtime_error("This user doesn't have udp settings");
+    else if (rc != SQLITE_ROW)
+        throw std::runtime_error(sqlite3_errstr(rc));
+    tab_contacts[0] = (const char *)sqlite3_column_text(res, 0);
+    tab_contacts[1] = (const char *)sqlite3_column_text(res, 1);
+    sqlite3_finalize(res);
+    return tab_contacts;
 }

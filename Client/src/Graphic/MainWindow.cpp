@@ -16,8 +16,8 @@ MainWindow::MainWindow() :
 QMainWindow(nullptr), _client(nullptr)
 {
     auto args = QCoreApplication::arguments();
-    if (args.count() < 3)
-        throw std::runtime_error("Invalid usage (eg. ./client <ipv4> <port>");
+    if (args.count() < 4)
+        throw std::runtime_error("Invalid usage (eg. ./client <remote server ipv4> <remote server port> <your ipv4>");
     _socket = new BoostTcpClient(args[1].toStdString(), args[2].toUInt());
     _client = new Client(_socket);
     setWindowIcon(QIcon(":/images/favicon.png"));
@@ -47,7 +47,8 @@ void MainWindow::goSignin()
 
 void MainWindow::goContacts()
 {
-    setCentralWidget(new Contacts(this));
+    auto args = QCoreApplication::arguments();
+    setCentralWidget(new Contacts(this, args[3].toStdString()));
 }
 
 void MainWindow::login(const QString &login, const QString &password)

@@ -84,3 +84,39 @@ OK <username1> <username2> ...
 ```
 KO <error>
 ```
+
+## Appelez un contact
+```
+CALL <username>
+```
+#### Réponses:
+```
+OK <ipv4> <port>
+```
+```
+KO <error>
+```
+
+## Parametrez ses données udp
+```
+SET_UDP <ipv4> <port>
+```
+#### Réponses:
+```
+OK
+```
+```
+KO <error>
+```
+
+## Obtenir les données udp d'un contact
+```
+GET_UDP <username>
+```
+#### Réponses:
+```
+OK <ipv4> <port>
+```
+```
+KO <error>
+```

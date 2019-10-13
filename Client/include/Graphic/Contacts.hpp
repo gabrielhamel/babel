@@ -13,6 +13,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QListView>
 #include <QtCore/QStringListModel>
+#include "BoostUdpClient.hpp"
 #include "IWindow.hpp"
 
 namespace bbl::cli::graphics
@@ -22,6 +23,8 @@ namespace bbl::cli::graphics
         Q_OBJECT
         private:
             IWindow *_window;
+            IUdpClient *_me;
+            IUdpClient *_he;
             std::vector <std::string> _contacts;
             QStringListModel *_contactsModel;
             QListView *_contactsList;
@@ -38,7 +41,7 @@ namespace bbl::cli::graphics
             QPushButton *_inviteButton;
             QLineEdit *_contactSearch;
         public:
-            Contacts(QMainWindow *parent);
+            Contacts(QMainWindow *parent, const std::string &myIpv4);
             ~Contacts();
         public slots:
             void refreshContacts();

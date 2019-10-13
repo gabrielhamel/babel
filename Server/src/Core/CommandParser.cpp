@@ -14,6 +14,8 @@
 #include "GetInviteCommand.hpp"
 #include "AcceptInviteCommand.hpp"
 #include "ContactListCommand.hpp"
+#include "SetUdpCommand.hpp"
+#include "GetUdpCommand.hpp"
 
 using namespace bbl::srv;
 
@@ -26,7 +28,9 @@ static const std::map<std::string, std::pair<strategyCallback, std::size_t>> _fu
     {"INVITE_CONTACT", {InviteCommand::run, 1}},
     {"GET_INVITE", {GetInviteCommand::run, 0}},
     {"ACCEPT_INVITE", {AcceptInviteCommand::run, 1}},
-    {"CONTACT_LIST", {ContactListCommand::run, 0}}
+    {"CONTACT_LIST", {ContactListCommand::run, 0}},
+    {"SET_UDP", {SetUdpCommand::run, 2}},
+    {"GET_UDP", {GetUdpCommand::run, 1}}
 };
 
 std::vector<std::string> CommandParser::split(std::string str, const std::string &delimiter)

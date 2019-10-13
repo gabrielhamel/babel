@@ -25,6 +25,8 @@ add_executable(client
     Client/src/Network/BoostUdpClient.cpp
     Client/src/Network/Packet.cpp
     Client/src/Core/Client.cpp
+    Client/src/Audio/AudioListener.cpp
+    Client/src/Audio/AudioRecorder.cpp
     Client/src/Audio/AudioData.cpp
     Client/src/Audio/AudioManager.cpp
     Client/src/Audio/PortAudioInput.cpp

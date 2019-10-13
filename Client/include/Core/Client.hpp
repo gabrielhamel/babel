@@ -34,6 +34,8 @@ namespace bbl::cli
             void acceptInvitation(const std::string &contact);
             std::vector<std::string> getInvitations();
             std::vector<std::string> getContacts();
+            void setUdpSetting(const std::string &ipv4, unsigned short port);
+            std::pair<std::string, unsigned short> getUdpSettings(const std::string &contact);
     };
 
 }

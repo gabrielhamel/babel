@@ -9,6 +9,7 @@
 
 #include <string>
 #include <vector>
+#include <array>
 #include <sqlite3.h>
 #include "IStorage.hpp"
 
@@ -32,6 +33,8 @@ namespace bbl::srv
             std::vector<std::string> getRequests(const std::string &username) const;
             void addRequest(const std::string &owner, const std::string &contact) const;
             void acceptRequest(const std::string &owner, const std::string &contact) const;
+            void setUdpParameters(const std::string &owner, const std::string &ipv4, const std::string &port) const;
+            std::array<std::string, 2> getUdpParameters(const std::string &owner, const std::string &me) const;
     };
 
 }

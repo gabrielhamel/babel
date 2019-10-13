@@ -120,3 +120,22 @@ std::vector<std::string> Client::getContacts()
         throw std::runtime_error(res.second);
     return split(res.second, " ");
 }
+
+void Client::setUdpSetting(const std::string &ipv4, unsigned short port)
+{
+    _tcpConnection->send("SET_UDP " + ipv4 + " " + std::to_string(port) + "\n");
+    auto res = readResponse();
+    if (res.first == false)
+        throw std::runtime_error(res.second);
+}
+
+std::pair<std::string, unsigned short> Client::getUdpSettings(const std::string &contact)
+{
+    _tcpConnection->send("GET_UDP " + contact + "\n");
+    auto res = readResponse();
+    if (res.first == false)
+        throw std::runtime_error(res.second);
+    auto str = split(res.second, " ");
+    auto result = std::pair<std::string, unsigned short>(str[0], std::stoi(str[1]));
+    return result;
+}
