@@ -24,11 +24,11 @@ QMainWindow(nullptr), _client(nullptr)
     setFixedSize(QSize(420, 500));
     setStyleSheet("background-color: #444444");
     setWindowTitle("Babel");
-    //setCentralWidget(new SigninForm(this));
+    setCentralWidget(new SigninForm(this));
 
     // Pour moi
-    _client->login("gabriel", "qwkAhd@S");
-    setCentralWidget(new Contacts(this));
+    //_client->login("gabriel", "qwkAhd@S");
+    //setCentralWidget(new Contacts(this));
 }
 
 MainWindow::~MainWindow()

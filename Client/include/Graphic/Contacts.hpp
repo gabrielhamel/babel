@@ -26,6 +26,7 @@ namespace bbl::cli::graphics
             QStringListModel *_contactsModel;
             QListView *_contactsList;
             QLabel *_contactsLabel;
+            QLabel *_inviteLabel;
             QPushButton *_contactsReload;
             std::vector <std::string> _invitations;
             QStringListModel *_invitationsModel;
@@ -34,6 +35,8 @@ namespace bbl::cli::graphics
             QPushButton *_invitationsReload;
             QPushButton *_acceptInvitationButton;
             QPushButton *_callButton;
+            QPushButton *_inviteButton;
+            QLineEdit *_contactSearch;
         public:
             Contacts(QMainWindow *parent);
             ~Contacts();
@@ -42,5 +45,6 @@ namespace bbl::cli::graphics
             void refreshInvitations();
             void acceptInvitation();
             void call();
+            void invite();
     };
 }

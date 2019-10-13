@@ -66,6 +66,24 @@ Contacts::Contacts(QMainWindow *parent)
     connect(_callButton, SIGNAL(clicked()), this, SLOT(call()));
     _callButton->setStyleSheet("QPushButton {color: #fff; background-color: #337ab7; border-color: #2e6da4; border-radius: 9px; margin-bottom: 0; font-weight: 400; border: 1px solid transparent; padding: 9px 12px; font-size: 14px;} QPushButton:hover {background-color: #2269a6; } QPushButton:pressed {background-color: #115895; }");
 
+    _contactSearch = new QLineEdit(this);
+    _contactSearch->setPlaceholderText("Username");
+    _contactSearch->setMaxLength(32);
+    _contactSearch->setMinimumWidth(150);
+    _contactSearch->setGeometry(400 - _contactSearch->width() / 2 - 30, 80, _contactSearch->width(), _contactSearch->height() + 10);
+    _contactSearch->setStyleSheet("color: white; background-color: #666666; border-radius: 9px; padding-left: 10px; padding-right: 10px; font-size: 20px;");
+
+    _inviteLabel = new QLabel(this);
+    _inviteLabel->setText("Search");
+    _inviteLabel->setMinimumWidth(200);
+    _inviteLabel->setGeometry(330, 20, _inviteLabel->width(), _inviteLabel->height() + 10);
+    _inviteLabel->setStyleSheet("color: white; font-size: 38px;");
+
+    _inviteButton = new QPushButton(this);
+    _inviteButton->setIcon(QIcon(QPixmap(":/images/check.png")));
+    _inviteButton->setGeometry(400 + _contactSearch->width() / 2 - 20, 80, 40, 40);
+    connect(_inviteButton, SIGNAL(clicked()), this, SLOT(invite()));
+    _inviteButton->setStyleSheet("QPushButton {color: #fff; background-color: #337ab7; border-color: #2e6da4; border-radius: 9px; margin-bottom: 0; font-weight: 400; border: 1px solid transparent; padding: 9px 12px; font-size: 14px;} QPushButton:hover {background-color: #2269a6; } QPushButton:pressed {background-color: #115895; }");
 
     refreshContacts();
     refreshInvitations();
@@ -83,11 +101,18 @@ Contacts::~Contacts()
     delete _invitationsReload;
     delete _acceptInvitationButton;
     delete _callButton;
+    delete _inviteButton;
+    delete _contactSearch;
+    delete _inviteLabel;
 }
 
 void Contacts::refreshContacts()
 {
-    _contacts = _window->getClient().getContacts();
+    try {
+        _contacts = _window->getClient().getContacts();
+    } catch (const std::exception &error) {
+        std::cerr << error.what() << std::endl;
+    }
     QStringList list;
     for (auto &contact : _contacts)
         list << QString::fromStdString(contact);
@@ -96,7 +121,11 @@ void Contacts::refreshContacts()
 
 void Contacts::refreshInvitations()
 {
-    _invitations = _window->getClient().getInvitations();
+    try {
+        _invitations = _window->getClient().getInvitations();
+    } catch (const std::exception &error) {
+        std::cerr << error.what() << std::endl;
+    }
     QStringList list;
     for (auto &invitation : _invitations)
         list << QString::fromStdString(invitation);
@@ -108,9 +137,25 @@ void Contacts::acceptInvitation()
     auto selected = _invitationsList->currentIndex().data(Qt::DisplayRole).toString();
     if (selected == "")
         return;
-    _window->getClient().acceptInvitation(selected.toStdString());
-    refreshContacts();
-    refreshInvitations();
+    try {
+        _window->getClient().acceptInvitation(selected.toStdString());
+        refreshContacts();
+        refreshInvitations();
+    } catch (const std::exception &error) {
+        std::cerr << error.what() << std::endl;
+    }
+}
+
+void Contacts::invite()
+{
+    auto contact = _contactSearch->text().toStdString();
+    if (contact == "")
+        return;
+    try {
+        _window->getClient().requestInvitation(contact);
+    } catch (const std::exception &error) {
+        std::cerr << error.what() << std::endl;
+    }
 }
 
 void Contacts::call()
