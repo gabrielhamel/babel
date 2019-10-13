@@ -8,6 +8,7 @@
 #pragma once
 
 #include <QtWidgets/QMainWindow>
+#include "Client.hpp"
 
 namespace bbl::cli::graphics
 {
@@ -18,6 +19,7 @@ namespace bbl::cli::graphics
             virtual ~IWindow() = default;
             virtual void login(const QString &login, const QString &password) = 0;
             virtual void signup(const QString &login, const QString &password) = 0;
+            virtual Client &getClient() = 0;
     };
 
 }

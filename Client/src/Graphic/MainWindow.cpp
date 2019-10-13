@@ -24,7 +24,11 @@ QMainWindow(nullptr), _client(nullptr)
     setFixedSize(QSize(420, 500));
     setStyleSheet("background-color: #444444");
     setWindowTitle("Babel");
-    setCentralWidget(new SigninForm(this));
+    //setCentralWidget(new SigninForm(this));
+
+    // Pour moi
+    _client->login("gabriel", "qwkAhd@S");
+    setCentralWidget(new Contacts(this));
 }
 
 MainWindow::~MainWindow()
@@ -45,11 +49,16 @@ void MainWindow::goSignin()
     setCentralWidget(new SigninForm(this));
 }
 
+void MainWindow::goContacts()
+{
+    setCentralWidget(new Contacts(this));
+}
+
 void MainWindow::login(const QString &login, const QString &password)
 {
     try {
         _client->login(login.toStdString(), password.toStdString());
-        // Do login
+        goContacts();
     } catch (const std::exception &error) {
         std::cerr << error.what() << std::endl;
     }
@@ -63,4 +72,9 @@ void MainWindow::signup(const QString &login, const QString &password)
     } catch (const std::exception &error) {
         std::cerr << error.what() << std::endl;
     }
+}
+
+bbl::cli::Client &MainWindow::getClient()
+{
+    return *_client;
 }

@@ -36,6 +36,8 @@ add_executable(client
     Client/include/Graphic/SigninForm.hpp
     Client/src/Graphic/SignupForm.cpp
     Client/include/Graphic/SignupForm.hpp
+    Client/src/Graphic/Contacts.cpp
+    Client/include/Graphic/Contacts.hpp
     Client/src/Graphic/ressources.qrc
 )
 
