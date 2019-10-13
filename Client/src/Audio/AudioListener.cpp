@@ -10,16 +10,35 @@
 using namespace bbl::cli::audio;
 
 AudioListener::AudioListener(IUdpClient *client) :
-_client(client), _audiomanager(new AudioManager())
+_client(client), _audiomanager(new AudioManager()), _again(true)
 {
-    // while (1) {
-    //     auto res = client->recv().getData();
-    //     audiomanager->setDataSamples((float *)res.data());
-    //     audiomanager->playRecord();
-    // }
+
 }
 
 AudioListener::~AudioListener()
 {
+    _again = false;
     delete _audiomanager;
+}
+
+void AudioListener::run()
+{
+    std::vector<unsigned char> res;
+
+    while (_again) {
+        try {
+            res = _client->recv().getData();
+        } catch (const std::exception &error) {
+            _again = false;
+            break;
+        }
+        _audiomanager->setDataSamples((float *)res.data());
+        _audiomanager->playRecord();
+    }
+}
+
+void AudioListener::destroy()
+{
+    _client->close();
+    _again = false;
 }

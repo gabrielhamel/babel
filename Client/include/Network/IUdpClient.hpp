@@ -20,6 +20,7 @@ namespace bbl::cli
             virtual void send(const Packet &packet) = 0;
             virtual Packet recv() = 0;
             virtual unsigned short getPort() const = 0;
+            virtual void close() = 0;
     };
 
 }

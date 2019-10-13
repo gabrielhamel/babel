@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <QtGui/QCloseEvent>
 #include <QtWidgets/QMainWindow>
 #include "SigninForm.hpp"
 #include "SignupForm.hpp"
@@ -24,6 +25,7 @@ namespace bbl::cli::graphics
         private:
             ITcpClient *_socket;
             Client *_client;
+            Contacts *_ctForm;
         public:
             MainWindow();
             ~MainWindow();
@@ -31,6 +33,7 @@ namespace bbl::cli::graphics
             void signup(const QString &login, const QString &password);
             Client &getClient();
             void goContacts();
+            void closeEvent(QCloseEvent *event);
         public slots:
             void goSignup();
             void goSignin();

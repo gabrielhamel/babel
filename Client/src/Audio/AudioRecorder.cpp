@@ -10,16 +10,33 @@
 using namespace bbl::cli::audio;
 
 AudioRecorder::AudioRecorder(IUdpClient *client) :
-_client(client), _audiomanager(new AudioManager())
+_client(client), _audiomanager(new AudioManager()), _again(true)
 {
-    // while (1) {
-    //     audiomanager->startRecord();
-    //     float *data = audiomanager->getDataSamples();
-    //     client->send(Packet((const unsigned char *)data, audiomanager->getSizeSamples()));
-    // }
+
 }
 
 AudioRecorder::~AudioRecorder()
 {
+    _again = false;
     delete _audiomanager;
+}
+
+void AudioRecorder::run()
+{
+    while (_again) {
+        _audiomanager->startRecord();
+        float *data = _audiomanager->getDataSamples();
+        try {
+            _client->send(Packet((const unsigned char *)data, _audiomanager->getSizeSamples()));
+        } catch (const std::exception &error) {
+            _again = false;
+            break;
+        }
+    }
+}
+
+void AudioRecorder::destroy()
+{
+    _client->close();
+    _again = false;
 }

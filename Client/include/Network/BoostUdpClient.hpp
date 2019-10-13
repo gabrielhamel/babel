@@ -33,6 +33,7 @@ namespace bbl::cli {
             Packet recv();
             unsigned short getPort() const;
             std::string getAddress() const;
+            void close();
     };
 
 }

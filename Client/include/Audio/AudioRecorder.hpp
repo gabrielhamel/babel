@@ -7,19 +7,25 @@
 
 #pragma once
 
+#include <QtCore/QThread>
 #include "IUdpClient.hpp"
 #include "AudioManager.hpp"
 
 namespace bbl::cli::audio
 {
 
-    class AudioRecorder {
-        public:
-            AudioRecorder(IUdpClient *client);
-            ~AudioRecorder();
+    class AudioRecorder : public QThread
+    {
+        Q_OBJECT
         private:
             IUdpClient *_client;
             AudioManager *_audiomanager;
+            bool _again;
+        public:
+            AudioRecorder(IUdpClient *client);
+            ~AudioRecorder();
+            void run();
+            void destroy();
     };
 
 }

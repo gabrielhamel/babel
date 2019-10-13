@@ -13,7 +13,7 @@
 using namespace bbl::cli::graphics;
 
 MainWindow::MainWindow() :
-QMainWindow(nullptr), _client(nullptr)
+QMainWindow(nullptr), _client(nullptr), _ctForm(nullptr)
 {
     auto args = QCoreApplication::arguments();
     if (args.count() < 4)
@@ -24,7 +24,12 @@ QMainWindow(nullptr), _client(nullptr)
     setFixedSize(QSize(420, 500));
     setStyleSheet("background-color: #444444");
     setWindowTitle("Babel");
-    setCentralWidget(new SigninForm(this));
+    //setCentralWidget(new SigninForm(this));
+
+    // Pour moi
+    _client->login("gabriel", "de3be2f3");
+    _ctForm = new Contacts(this, args[3].toStdString());
+    setCentralWidget(_ctForm);
 }
 
 MainWindow::~MainWindow()
@@ -33,6 +38,11 @@ MainWindow::~MainWindow()
         delete _client;
     if (_socket)
         delete _socket;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+
 }
 
 void MainWindow::goSignup()
@@ -48,7 +58,8 @@ void MainWindow::goSignin()
 void MainWindow::goContacts()
 {
     auto args = QCoreApplication::arguments();
-    setCentralWidget(new Contacts(this, args[3].toStdString()));
+    _ctForm = new Contacts(this, args[3].toStdString());
+    setCentralWidget(_ctForm);
 }
 
 void MainWindow::login(const QString &login, const QString &password)

@@ -15,6 +15,8 @@
 #include <QtCore/QStringListModel>
 #include "BoostUdpClient.hpp"
 #include "IWindow.hpp"
+#include "AudioListener.hpp"
+#include "AudioRecorder.hpp"
 
 namespace bbl::cli::graphics
 {
@@ -25,6 +27,8 @@ namespace bbl::cli::graphics
             IWindow *_window;
             IUdpClient *_me;
             IUdpClient *_he;
+            audio::AudioListener *_listener;
+            audio::AudioRecorder *_recorder;
             std::vector <std::string> _contacts;
             QStringListModel *_contactsModel;
             QListView *_contactsList;
@@ -43,6 +47,7 @@ namespace bbl::cli::graphics
         public:
             Contacts(QMainWindow *parent, const std::string &myIpv4);
             ~Contacts();
+            void destroy();
         public slots:
             void refreshContacts();
             void refreshInvitations();

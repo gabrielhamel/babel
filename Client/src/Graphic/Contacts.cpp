@@ -6,12 +6,13 @@
 */
 
 #include <iostream>
+#include <QtCore/QThread>
 #include "../../include/Graphic/Contacts.hpp"
 
 using namespace bbl::cli::graphics;
 
 Contacts::Contacts(QMainWindow *parent, const std::string &myIpv4) :
-_he(nullptr), _me(nullptr)
+_he(nullptr), _me(nullptr), _recorder(nullptr)
 {
     _window = dynamic_cast<IWindow *>(parent);
 
@@ -88,13 +89,20 @@ _he(nullptr), _me(nullptr)
 
     _me = new BoostUdpClient("0.0.0.0", 0, true);
     _window->getClient().setUdpSetting(myIpv4, _me->getPort());
+    _listener = new audio::AudioListener(_me);
 
     refreshContacts();
     refreshInvitations();
+
+    _listener->start();
 }
 
 Contacts::~Contacts()
 {
+    if (_listener)
+        _listener->destroy();
+    if (_recorder)
+        _recorder->destroy();
     delete _contactsList;
     delete _contactsModel;
     delete _contactsLabel;
@@ -173,11 +181,15 @@ void Contacts::call()
         return;
     try {
         auto settings = _window->getClient().getUdpSettings(user);
-
-        // Faire des trucs
-        std::cout << settings.first << " " << settings.second << std::endl;
-    
+        _he = new BoostUdpClient(settings.first, settings.second, false);
+        _recorder = new audio::AudioRecorder(_he);
+        _recorder->start();
     } catch (const std::exception &error) {
         std::cerr << error.what() << std::endl;
     }
+}
+
+void Contacts::destroy()
+{
+
 }

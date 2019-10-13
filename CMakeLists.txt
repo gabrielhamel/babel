@@ -27,6 +27,8 @@ add_executable(client
     Client/src/Core/Client.cpp
     Client/src/Audio/AudioListener.cpp
     Client/src/Audio/AudioRecorder.cpp
+    Client/include/Audio/AudioListener.hpp
+    Client/include/Audio/AudioRecorder.hpp
     Client/src/Audio/AudioData.cpp
     Client/src/Audio/AudioManager.cpp
     Client/src/Audio/PortAudioInput.cpp

@@ -70,3 +70,8 @@ std::string BoostUdpClient::getAddress() const
 {
     return _ipv4;
 }
+
+void BoostUdpClient::close()
+{
+    _socket.close();
+}
